@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#8fb05c", "id": "oils-vinegars", "label": "oils-vinegars", "shape": "dot", "size": 7}, {"color": "#97c3fc", "id": "vegetable-fats", "label": "vegetable-fats", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "vegetable-oils", "label": "vegetable-oils", "shape": "dot", "size": 6}, {"color": "#ed7d31", "id": "cocoa-butter", "label": "cocoa-butter", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "coconut-butter", "label": "coconut-butter", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "margarines", "label": "margarines", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "shea-butter", "label": "shea-butter", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "argan-oils", "label": "argan-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "borage-seed-oils", "label": "borage-seed-oils", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "cereal-oils", "label": "cereal-oils", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "cottonseed-oils", "label": "cottonseed-oils", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "fruit-and-fruit-seed-oils", "label": "fruit-and-fruit-seed-oils", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "hemp-oils", "label": "hemp-oils", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "legume-oils", "label": "legume-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mustard-oils", "label": "mustard-oils", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "nut-oils", "label": "nut-oils", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "olive-oils", "label": "olive-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "palm-oils", "label": "palm-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "poppyseed-oils", "label": "poppyseed-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pumpkin-seed-oils", "label": "pumpkin-seed-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "rapeseed-oils", "label": "rapeseed-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "safflower-oils", "label": "safflower-oils", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "sunflower-oils", "label": "sunflower-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "tea-seed-oils", "label": "tea-seed-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "light-margarines", "label": "light-margarines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "liquid-margarines", "label": "liquid-margarines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "salted-margarines", "label": "salted-margarines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "unsalted-margarines", "label": "unsalted-margarines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "amaranth-oils", "label": "amaranth-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "corn-oils", "label": "corn-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "linseed-oils", "label": "linseed-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "rice-bran-oils", "label": "rice-bran-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "sesame-oils", "label": "sesame-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "wheat-germ-oils", "label": "wheat-germ-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "avocado-oils", "label": "avocado-oils", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "coconut-oils", "label": "coconut-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "grape-seed-oils", "label": "grape-seed-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "watermelon-seed-oils", "label": "watermelon-seed-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "soybean-oils", "label": "soybean-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "almond-oils", "label": "almond-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "hazelnut-oils", "label": "hazelnut-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "macadamia-oils", "label": "macadamia-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "peanut-oils", "label": "peanut-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pecan-oils", "label": "pecan-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pine-nut-oils", "label": "pine-nut-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pistachio-oils", "label": "pistachio-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "walnut-oils", "label": "walnut-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "refined-olive-oils", "label": "refined-olive-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "virgin-olive-oils", "label": "virgin-olive-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "nonrefined-sunflower-oils", "label": "nonrefined-sunflower-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "refined-deodorized-sunflower-oils", "label": "refined-deodorized-sunflower-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "refined-coco-oils", "label": "refined-coco-oils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "virgin-coco-oils", "label": "virgin-coco-oils", "shape": "dot", "size": 1}]);
+        edges = new vis.DataSet([{"from": "oils-vinegars", "label": 1, "to": "vegetable-fats", "weight": 1}, {"from": "oils-vinegars", "label": 1, "to": "vegetable-oils", "weight": 1}, {"from": "vegetable-fats", "label": 1, "to": "cocoa-butter", "weight": 1}, {"from": "vegetable-fats", "label": 1, "to": "coconut-butter", "weight": 1}, {"from": "vegetable-fats", "label": 1, "to": "margarines", "weight": 1}, {"from": "vegetable-fats", "label": 1, "to": "shea-butter", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "argan-oils", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "borage-seed-oils", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "cereal-oils", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "cottonseed-oils", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "fruit-and-fruit-seed-oils", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "hemp-oils", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "legume-oils", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "mustard-oils", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "nut-oils", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "olive-oils", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "palm-oils", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "poppyseed-oils", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "pumpkin-seed-oils", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "rapeseed-oils", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "safflower-oils", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "sunflower-oils", "weight": 1}, {"from": "vegetable-oils", "label": 1, "to": "tea-seed-oils", "weight": 1}, {"from": "margarines", "label": 1, "to": "light-margarines", "weight": 1}, {"from": "margarines", "label": 1, "to": "liquid-margarines", "weight": 1}, {"from": "margarines", "label": 1, "to": "salted-margarines", "weight": 1}, {"from": "margarines", "label": 1, "to": "unsalted-margarines", "weight": 1}, {"from": "cereal-oils", "label": 1, "to": "amaranth-oils", "weight": 1}, {"from": "cereal-oils", "label": 1, "to": "corn-oils", "weight": 1}, {"from": "cereal-oils", "label": 1, "to": "linseed-oils", "weight": 1}, {"from": "cereal-oils", "label": 1, "to": "rice-bran-oils", "weight": 1}, {"from": "cereal-oils", "label": 1, "to": "sesame-oils", "weight": 1}, {"from": "cereal-oils", "label": 1, "to": "wheat-germ-oils", "weight": 1}, {"from": "fruit-and-fruit-seed-oils", "label": 1, "to": "avocado-oils", "weight": 1}, {"from": "fruit-and-fruit-seed-oils", "label": 1, "to": "coconut-oils", "weight": 1}, {"from": "fruit-and-fruit-seed-oils", "label": 1, "to": "grape-seed-oils", "weight": 1}, {"from": "fruit-and-fruit-seed-oils", "label": 1, "to": "watermelon-seed-oils", "weight": 1}, {"from": "legume-oils", "label": 1, "to": "soybean-oils", "weight": 1}, {"from": "nut-oils", "label": 1, "to": "almond-oils", "weight": 1}, {"from": "nut-oils", "label": 1, "to": "hazelnut-oils", "weight": 1}, {"from": "nut-oils", "label": 1, "to": "macadamia-oils", "weight": 1}, {"from": "nut-oils", "label": 1, "to": "peanut-oils", "weight": 1}, {"from": "nut-oils", "label": 1, "to": "pecan-oils", "weight": 1}, {"from": "nut-oils", "label": 1, "to": "pine-nut-oils", "weight": 1}, {"from": "nut-oils", "label": 1, "to": "pistachio-oils", "weight": 1}, {"from": "nut-oils", "label": 1, "to": "walnut-oils", "weight": 1}, {"from": "olive-oils", "label": 1, "to": "refined-olive-oils", "weight": 1}, {"from": "olive-oils", "label": 1, "to": "virgin-olive-oils", "weight": 1}, {"from": "sunflower-oils", "label": 1, "to": "nonrefined-sunflower-oils", "weight": 1}, {"from": "sunflower-oils", "label": 1, "to": "refined-deodorized-sunflower-oils", "weight": 1}, {"from": "coconut-oils", "label": 1, "to": "refined-coco-oils", "weight": 1}, {"from": "coconut-oils", "label": 1, "to": "virgin-coco-oils", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+kafoodle-data-analysis
+
+# Ignore test directory
+test
+
+# Ignore README
+README.md

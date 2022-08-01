@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#8fb05c", "id": "meat-poultry", "label": "meat-poultry", "shape": "dot", "size": 7}, {"color": "#97c3fc", "id": "cattle", "label": "cattle", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "dromedary", "label": "dromedary", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "european-moose-meat", "label": "european-moose-meat", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frog", "label": "frog", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "insects", "label": "insects", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ostrich", "label": "ostrich", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "pork", "label": "pork", "shape": "dot", "size": 3}, {"color": "#97c3fc", "id": "poultries", "label": "poultries", "shape": "dot", "size": 3}, {"color": "#ed7d31", "id": "rabbit-meat", "label": "rabbit-meat", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "reindeer-meat", "label": "reindeer-meat", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "roe-deer-meat", "label": "roe-deer-meat", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "snails", "label": "snails", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "wapiti-elk-meat", "label": "wapiti-elk-meat", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "zebra", "label": "zebra", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "beef", "label": "beef", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lamb", "label": "lamb", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "veal-meat", "label": "veal-meat", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ants", "label": "ants", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "bacon", "label": "bacon", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "pig-heart", "label": "pig-heart", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pork-belly", "label": "pork-belly", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pork-ribs", "label": "pork-ribs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pork-tongue", "label": "pork-tongue", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "capon", "label": "capon", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "chickens", "label": "chickens", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "ducks", "label": "ducks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "geese", "label": "geese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pigeon", "label": "pigeon", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "turkeys", "label": "turkeys", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-snails", "label": "canned-snails", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fresh-snails", "label": "fresh-snails", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-beef", "label": "ground-beef", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "beef-steaks", "label": "beef-steaks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "beef-jerkies", "label": "beef-jerkies", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "back-bacon", "label": "back-bacon", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "rindless-short-cut-bacon", "label": "rindless-short-cut-bacon", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "sliced-bacon", "label": "sliced-bacon", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "smoked-bacon-lardons", "label": "smoked-bacon-lardons", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "smoked-back-bacon", "label": "smoked-back-bacon", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "smoked-rindless-back-bacon-rashers", "label": "smoked-rindless-back-bacon-rashers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "unsmoked-back-bacon", "label": "unsmoked-back-bacon", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "unsmoked-rindless-back-bacon-rashers", "label": "unsmoked-rindless-back-bacon-rashers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "chicken-breasts", "label": "chicken-breasts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "chicken-thighs", "label": "chicken-thighs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "chicken-wings", "label": "chicken-wings", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "duck-breast", "label": "duck-breast", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "duck-legs", "label": "duck-legs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "turkey-breast", "label": "turkey-breast", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "turkey-thighs", "label": "turkey-thighs", "shape": "dot", "size": 1}]);
+        edges = new vis.DataSet([{"from": "meat-poultry", "label": 1, "to": "cattle", "weight": 1}, {"from": "meat-poultry", "label": 1, "to": "dromedary", "weight": 1}, {"from": "meat-poultry", "label": 1, "to": "european-moose-meat", "weight": 1}, {"from": "meat-poultry", "label": 1, "to": "frog", "weight": 1}, {"from": "meat-poultry", "label": 1, "to": "insects", "weight": 1}, {"from": "meat-poultry", "label": 1, "to": "ostrich", "weight": 1}, {"from": "meat-poultry", "label": 1, "to": "pork", "weight": 1}, {"from": "meat-poultry", "label": 1, "to": "poultries", "weight": 1}, {"from": "meat-poultry", "label": 1, "to": "rabbit-meat", "weight": 1}, {"from": "meat-poultry", "label": 1, "to": "reindeer-meat", "weight": 1}, {"from": "meat-poultry", "label": 1, "to": "roe-deer-meat", "weight": 1}, {"from": "meat-poultry", "label": 1, "to": "snails", "weight": 1}, {"from": "meat-poultry", "label": 1, "to": "wapiti-elk-meat", "weight": 1}, {"from": "meat-poultry", "label": 1, "to": "zebra", "weight": 1}, {"from": "cattle", "label": 1, "to": "beef", "weight": 1}, {"from": "cattle", "label": 1, "to": "lamb", "weight": 1}, {"from": "cattle", "label": 1, "to": "veal-meat", "weight": 1}, {"from": "insects", "label": 1, "to": "ants", "weight": 1}, {"from": "pork", "label": 1, "to": "bacon", "weight": 1}, {"from": "pork", "label": 1, "to": "pig-heart", "weight": 1}, {"from": "pork", "label": 1, "to": "pork-belly", "weight": 1}, {"from": "pork", "label": 1, "to": "pork-ribs", "weight": 1}, {"from": "pork", "label": 1, "to": "pork-tongue", "weight": 1}, {"from": "poultries", "label": 1, "to": "capon", "weight": 1}, {"from": "poultries", "label": 1, "to": "chickens", "weight": 1}, {"from": "poultries", "label": 1, "to": "ducks", "weight": 1}, {"from": "poultries", "label": 1, "to": "geese", "weight": 1}, {"from": "poultries", "label": 1, "to": "pigeon", "weight": 1}, {"from": "poultries", "label": 1, "to": "turkeys", "weight": 1}, {"from": "snails", "label": 1, "to": "canned-snails", "weight": 1}, {"from": "snails", "label": 1, "to": "fresh-snails", "weight": 1}, {"from": "beef", "label": 1, "to": "ground-beef", "weight": 1}, {"from": "beef", "label": 1, "to": "beef-steaks", "weight": 1}, {"from": "beef", "label": 1, "to": "beef-jerkies", "weight": 1}, {"from": "bacon", "label": 1, "to": "back-bacon", "weight": 1}, {"from": "bacon", "label": 1, "to": "rindless-short-cut-bacon", "weight": 1}, {"from": "bacon", "label": 1, "to": "sliced-bacon", "weight": 1}, {"from": "bacon", "label": 1, "to": "smoked-bacon-lardons", "weight": 1}, {"from": "back-bacon", "label": 1, "to": "smoked-back-bacon", "weight": 1}, {"from": "back-bacon", "label": 1, "to": "smoked-rindless-back-bacon-rashers", "weight": 1}, {"from": "back-bacon", "label": 1, "to": "unsmoked-back-bacon", "weight": 1}, {"from": "back-bacon", "label": 1, "to": "unsmoked-rindless-back-bacon-rashers", "weight": 1}, {"from": "chickens", "label": 1, "to": "chicken-breasts", "weight": 1}, {"from": "chickens", "label": 1, "to": "chicken-thighs", "weight": 1}, {"from": "chickens", "label": 1, "to": "chicken-wings", "weight": 1}, {"from": "ducks", "label": 1, "to": "duck-breast", "weight": 1}, {"from": "ducks", "label": 1, "to": "duck-legs", "weight": 1}, {"from": "turkeys", "label": 1, "to": "turkey-breast", "weight": 1}, {"from": "turkeys", "label": 1, "to": "turkey-thighs", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

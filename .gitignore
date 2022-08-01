@@ -1,0 +1,14 @@
+# Ignore all .DS_Store files (Mac system default)
+*.DS_Store
+
+# Ignore all python notebook checks
+*.ipynb_checkpoints
+
+# Ignore all venvs
+*venv/
+
+# Ignore Visual Studio code files
+.vscode/
+
+# Ignore .env files
+*.env

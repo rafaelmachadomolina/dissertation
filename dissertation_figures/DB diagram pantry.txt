@@ -1,0 +1,71 @@
+//DB simplified diagram generator
+
+//Tables and references
+
+Table Ingredients {
+  id int [pk, increment]
+  name varchar
+}
+
+Table Ingredient_categories {
+  id int [pk, increment]
+  name varchar
+}
+
+Table Stopwords {
+  id int [pk, increment]
+  stopword varchar
+}
+
+Table Taxonomy {
+  id int [pk, increment]
+  ingredient_name varchar
+  category_id int
+  taxonomy varchar
+}
+
+Table Taxonomy_vector {
+  id int [pk, increment]
+  taxonomy_id int
+  ingredient_name varchar
+  vector_representation varchar
+}
+
+Table Ingredients_scored {
+  ingredient_id int
+  taxonomy_id int
+  matched_score decimal
+}
+
+Table Taxonomy_ref_values {
+  taxonomy_id int
+  property_type varchar
+  property varchar
+  n_rows int
+  reference_value decimal
+  mean_absolute_deviation decimal
+}
+
+Table Summary {
+  taxonomy_id int
+  product_name varchar
+  category varchar
+  number_data_points int
+  energy decimal
+  fibre decimal
+  protein decimal
+  salt decimal
+  fat decimal
+  saturated decimal
+  carbohydrate decimal
+  sugar decimal
+  ALLERGENS bool
+}
+
+// References
+Ref: Ingredients.id - Ingredients_scored.ingredient_id
+Ref: Taxonomy.category_id > Ingredient_categories.id
+Ref: Taxonomy_vector.taxonomy_id > Taxonomy.id
+Ref: Ingredients_scored.taxonomy_id > Taxonomy.id
+Ref: Taxonomy_ref_values.taxonomy_id > Taxonomy.id
+Ref: Summary.taxonomy_id > Taxonomy.id

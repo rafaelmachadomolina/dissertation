@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#8fb05c", "id": "herbs-spices", "label": "herbs-spices", "shape": "dot", "size": 8}, {"color": "#97c3fc", "id": "fresh-herbs", "label": "fresh-herbs", "shape": "dot", "size": 4}, {"color": "#97c3fc", "id": "frozen-herbs", "label": "frozen-herbs", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "ground-herbs", "label": "ground-herbs", "shape": "dot", "size": 3}, {"color": "#97c3fc", "id": "spices", "label": "spices", "shape": "dot", "size": 6}, {"color": "#ed7d31", "id": "basil", "label": "basil", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "bay", "label": "bay", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "chives", "label": "chives", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "coriander-leaves", "label": "coriander-leaves", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dill", "label": "dill", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fennel-leaves", "label": "fennel-leaves", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fenugreek-leaves", "label": "fenugreek-leaves", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "garden-chervil-leaves", "label": "garden-chervil-leaves", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "hyssop", "label": "hyssop", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lemon-grass", "label": "lemon-grass", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lemon-verbena", "label": "lemon-verbena", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "marjoram", "label": "marjoram", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mint", "label": "mint", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "oregano", "label": "oregano", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "parsley", "label": "parsley", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "rosemary", "label": "rosemary", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "tarragon", "label": "tarragon", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "thyme", "label": "thyme", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-basil", "label": "frozen-basil", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-chives", "label": "frozen-chives", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-dill", "label": "frozen-dill", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-mint", "label": "frozen-mint", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-parsley", "label": "frozen-parsley", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-dried-basil", "label": "ground-dried-basil", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-dried-bay", "label": "ground-dried-bay", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-dried-chives", "label": "ground-dried-chives", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-dried-coriander-leaves", "label": "ground-dried-coriander-leaves", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-dried-dill", "label": "ground-dried-dill", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-dried-fenugreek-leaves", "label": "ground-dried-fenugreek-leaves", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-dried-lemon-verbena", "label": "ground-dried-lemon-verbena", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-dried-mint", "label": "ground-dried-mint", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-dried-oregano", "label": "ground-dried-oregano", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-dried-parsley", "label": "ground-dried-parsley", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-dried-rosemary", "label": "ground-dried-rosemary", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-dried-sage", "label": "ground-dried-sage", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-dried-tarragon", "label": "ground-dried-tarragon", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-dried-thyme", "label": "ground-dried-thyme", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "anise", "label": "anise", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cardamom", "label": "cardamom", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "cinnamon", "label": "cinnamon", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "cloves", "label": "cloves", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "coriander-seeds", "label": "coriander-seeds", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "cumin", "label": "cumin", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "garden-chervil-seeds", "label": "garden-chervil-seeds", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "ginger", "label": "ginger", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mace", "label": "mace", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "nutmeg", "label": "nutmeg", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "paprika", "label": "paprika", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "peppers", "label": "peppers", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "saffron", "label": "saffron", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "star-anise", "label": "star-anise", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "turmeric", "label": "turmeric", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "vanilla", "label": "vanilla", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cinnamon-powder", "label": "cinnamon-powder", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cinnamon-sticks", "label": "cinnamon-sticks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-cloves", "label": "ground-cloves", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "whole-cloves", "label": "whole-cloves", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ground-cumin-seeds", "label": "ground-cumin-seeds", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "whole-cumin-seeds", "label": "whole-cumin-seeds", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fresh-ginger", "label": "fresh-ginger", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "gari", "label": "gari", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ginger-powder", "label": "ginger-powder", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cayenne-peppers", "label": "cayenne-peppers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "gray-peppers", "label": "gray-peppers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "black-peppercorns", "label": "black-peppercorns", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "green-peppercorns", "label": "green-peppercorns", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "white-peppercorns", "label": "white-peppercorns", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pink-peppers", "label": "pink-peppers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "powdered-saffron", "label": "powdered-saffron", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "saffron-threads", "label": "saffron-threads", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "turmeric-powder", "label": "turmeric-powder", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fresh-turmeric", "label": "fresh-turmeric", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "vanilla-extract", "label": "vanilla-extract", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "vanilla-pods", "label": "vanilla-pods", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "vanilla-powder", "label": "vanilla-powder", "shape": "dot", "size": 1}]);
+        edges = new vis.DataSet([{"from": "herbs-spices", "label": 1, "to": "fresh-herbs", "weight": 1}, {"from": "herbs-spices", "label": 1, "to": "frozen-herbs", "weight": 1}, {"from": "herbs-spices", "label": 1, "to": "ground-herbs", "weight": 1}, {"from": "herbs-spices", "label": 1, "to": "spices", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "basil", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "bay", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "chives", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "coriander-leaves", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "dill", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "fennel-leaves", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "fenugreek-leaves", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "garden-chervil-leaves", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "hyssop", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "lemon-grass", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "lemon-verbena", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "marjoram", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "mint", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "oregano", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "parsley", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "rosemary", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "tarragon", "weight": 1}, {"from": "fresh-herbs", "label": 1, "to": "thyme", "weight": 1}, {"from": "frozen-herbs", "label": 1, "to": "frozen-basil", "weight": 1}, {"from": "frozen-herbs", "label": 1, "to": "frozen-chives", "weight": 1}, {"from": "frozen-herbs", "label": 1, "to": "frozen-dill", "weight": 1}, {"from": "frozen-herbs", "label": 1, "to": "frozen-mint", "weight": 1}, {"from": "frozen-herbs", "label": 1, "to": "frozen-parsley", "weight": 1}, {"from": "ground-herbs", "label": 1, "to": "ground-dried-basil", "weight": 1}, {"from": "ground-herbs", "label": 1, "to": "ground-dried-bay", "weight": 1}, {"from": "ground-herbs", "label": 1, "to": "ground-dried-chives", "weight": 1}, {"from": "ground-herbs", "label": 1, "to": "ground-dried-coriander-leaves", "weight": 1}, {"from": "ground-herbs", "label": 1, "to": "ground-dried-dill", "weight": 1}, {"from": "ground-herbs", "label": 1, "to": "ground-dried-fenugreek-leaves", "weight": 1}, {"from": "ground-herbs", "label": 1, "to": "ground-dried-lemon-verbena", "weight": 1}, {"from": "ground-herbs", "label": 1, "to": "ground-dried-mint", "weight": 1}, {"from": "ground-herbs", "label": 1, "to": "ground-dried-oregano", "weight": 1}, {"from": "ground-herbs", "label": 1, "to": "ground-dried-parsley", "weight": 1}, {"from": "ground-herbs", "label": 1, "to": "ground-dried-rosemary", "weight": 1}, {"from": "ground-herbs", "label": 1, "to": "ground-dried-sage", "weight": 1}, {"from": "ground-herbs", "label": 1, "to": "ground-dried-tarragon", "weight": 1}, {"from": "ground-herbs", "label": 1, "to": "ground-dried-thyme", "weight": 1}, {"from": "spices", "label": 1, "to": "anise", "weight": 1}, {"from": "spices", "label": 1, "to": "cardamom", "weight": 1}, {"from": "spices", "label": 1, "to": "cinnamon", "weight": 1}, {"from": "spices", "label": 1, "to": "cloves", "weight": 1}, {"from": "spices", "label": 1, "to": "coriander-seeds", "weight": 1}, {"from": "spices", "label": 1, "to": "cumin", "weight": 1}, {"from": "spices", "label": 1, "to": "garden-chervil-seeds", "weight": 1}, {"from": "spices", "label": 1, "to": "ginger", "weight": 1}, {"from": "spices", "label": 1, "to": "mace", "weight": 1}, {"from": "spices", "label": 1, "to": "nutmeg", "weight": 1}, {"from": "spices", "label": 1, "to": "paprika", "weight": 1}, {"from": "spices", "label": 1, "to": "peppers", "weight": 1}, {"from": "spices", "label": 1, "to": "saffron", "weight": 1}, {"from": "spices", "label": 1, "to": "star-anise", "weight": 1}, {"from": "spices", "label": 1, "to": "turmeric", "weight": 1}, {"from": "spices", "label": 1, "to": "vanilla", "weight": 1}, {"from": "cinnamon", "label": 1, "to": "cinnamon-powder", "weight": 1}, {"from": "cinnamon", "label": 1, "to": "cinnamon-sticks", "weight": 1}, {"from": "cloves", "label": 1, "to": "ground-cloves", "weight": 1}, {"from": "cloves", "label": 1, "to": "whole-cloves", "weight": 1}, {"from": "cumin", "label": 1, "to": "ground-cumin-seeds", "weight": 1}, {"from": "cumin", "label": 1, "to": "whole-cumin-seeds", "weight": 1}, {"from": "ginger", "label": 1, "to": "fresh-ginger", "weight": 1}, {"from": "ginger", "label": 1, "to": "gari", "weight": 1}, {"from": "ginger", "label": 1, "to": "ginger-powder", "weight": 1}, {"from": "peppers", "label": 1, "to": "cayenne-peppers", "weight": 1}, {"from": "peppers", "label": 1, "to": "gray-peppers", "weight": 1}, {"from": "peppers", "label": 1, "to": "black-peppercorns", "weight": 1}, {"from": "peppers", "label": 1, "to": "green-peppercorns", "weight": 1}, {"from": "peppers", "label": 1, "to": "white-peppercorns", "weight": 1}, {"from": "peppers", "label": 1, "to": "pink-peppers", "weight": 1}, {"from": "saffron", "label": 1, "to": "powdered-saffron", "weight": 1}, {"from": "saffron", "label": 1, "to": "saffron-threads", "weight": 1}, {"from": "turmeric", "label": 1, "to": "turmeric-powder", "weight": 1}, {"from": "turmeric", "label": 1, "to": "fresh-turmeric", "weight": 1}, {"from": "vanilla", "label": 1, "to": "vanilla-extract", "weight": 1}, {"from": "vanilla", "label": 1, "to": "vanilla-pods", "weight": 1}, {"from": "vanilla", "label": 1, "to": "vanilla-powder", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

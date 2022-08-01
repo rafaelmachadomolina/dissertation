@@ -1,0 +1,204 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+        #loadingBar {
+            position:absolute;
+            top:0px;
+            left:0px;
+            width: 100%;
+            height: 100%;
+            background-color:rgba(200,200,200,0.8);
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -ms-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            opacity:1;
+        }
+
+        #bar {
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:20px;
+            height:20px;
+            margin:auto auto auto auto;
+            border-radius:11px;
+            border:2px solid rgba(30,30,30,0.05);
+            background: rgb(0, 173, 246); /* Old browsers */
+            box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+        }
+
+        #border {
+            position:absolute;
+            top:10px;
+            left:10px;
+            width:500px;
+            height:23px;
+            margin:auto auto auto auto;
+            box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+            border-radius:10px;
+        }
+
+        #text {
+            position:absolute;
+            top:8px;
+            left:530px;
+            width:30px;
+            height:50px;
+            margin:auto auto auto auto;
+            font-size:22px;
+            color: #000000;
+        }
+
+        div.outerBorder {
+            position:relative;
+            top:400px;
+            width:600px;
+            height:44px;
+            margin:auto auto auto auto;
+            border:8px solid rgba(0,0,0,0.1);
+            background: rgb(252,252,252); /* Old browsers */
+            background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+            background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+            border-radius:72px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+<div id="loadingBar">
+    <div class="outerBorder">
+        <div id="text">0%</div>
+        <div id="border">
+            <div id="bar"></div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#8fb05c", "id": "dairy-eggs", "label": "dairy-eggs", "shape": "dot", "size": 12}, {"color": "#97c3fc", "id": "cheeses", "label": "cheeses", "shape": "dot", "size": 9}, {"color": "#ed7d31", "id": "condensed-milks", "label": "condensed-milks", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "creams", "label": "creams", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "eggs", "label": "eggs", "shape": "dot", "size": 3}, {"color": "#97c3fc", "id": "milks", "label": "milks", "shape": "dot", "size": 3}, {"color": "#ed7d31", "id": "whey-powder", "label": "whey-powder", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "yogurts", "label": "yogurts", "shape": "dot", "size": 4}, {"color": "#97c3fc", "id": "cheeses-from-france", "label": "cheeses-from-france", "shape": "dot", "size": 3}, {"color": "#97c3fc", "id": "cheeses-from-greece", "label": "cheeses-from-greece", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "cheeses-from-italy", "label": "cheeses-from-italy", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "cheeses-from-switzerland", "label": "cheeses-from-switzerland", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "cheeses-from-the-netherlands", "label": "cheeses-from-the-netherlands", "shape": "dot", "size": 3}, {"color": "#97c3fc", "id": "cheeses-from-the-united-kingdom", "label": "cheeses-from-the-united-kingdom", "shape": "dot", "size": 8}, {"color": "#ed7d31", "id": "buttermilk", "label": "buttermilk", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "sour-cream", "label": "sour-cream", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "uht-cream", "label": "uht-cream", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "chicken-eggs", "label": "chicken-eggs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "duck-eggs", "label": "duck-eggs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "emu-eggs", "label": "emu-eggs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fresh-eggs", "label": "fresh-eggs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "goose-eggs", "label": "goose-eggs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "guineafowl-eggs", "label": "guineafowl-eggs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "gull-eggs", "label": "gull-eggs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ostrich-eggs", "label": "ostrich-eggs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pheasant-eggs", "label": "pheasant-eggs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "quail-eggs", "label": "quail-eggs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cow-milks", "label": "cow-milks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "goat-milks", "label": "goat-milks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lactose-free-milk", "label": "lactose-free-milk", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mountain-milks", "label": "mountain-milks", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "non-homogenized-milks", "label": "non-homogenized-milks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "semi-skimmed-milks", "label": "semi-skimmed-milks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "sheep-milks", "label": "sheep-milks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "skimmed-milks", "label": "skimmed-milks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "whole-milks", "label": "whole-milks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "caramel-yogurts", "label": "caramel-yogurts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "chocolate-yogurts", "label": "chocolate-yogurts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cow-milk-yogurt", "label": "cow-milk-yogurt", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "flavoured-yogurts", "label": "flavoured-yogurts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "goat-milk-yogurts", "label": "goat-milk-yogurts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "greek-yogurts", "label": "greek-yogurts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "honey-yogurts", "label": "honey-yogurts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lactose-free-yogurts", "label": "lactose-free-yogurts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "low-fat-yogurts", "label": "low-fat-yogurts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mixed-yogurts", "label": "mixed-yogurts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "plain-yogurts", "label": "plain-yogurts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "sheep-milk-yogurts", "label": "sheep-milk-yogurts", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "stirred-yogurts", "label": "stirred-yogurts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "sweetened-yogurts", "label": "sweetened-yogurts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "vanilla-yogurt", "label": "vanilla-yogurt", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "whole-milk-yogurts", "label": "whole-milk-yogurts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "yogurts-with-cereals", "label": "yogurts-with-cereals", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "brie", "label": "brie", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "camembert", "label": "camembert", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cabecous", "label": "cabecous", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cancoillottes", "label": "cancoillottes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cheeses-from-corsica", "label": "cheeses-from-corsica", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "epoisses-de-bourgogne", "label": "epoisses-de-bourgogne", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "french-gruyeres", "label": "french-gruyeres", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "munsters", "label": "munsters", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pont-l-eveque", "label": "pont-l-eveque", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "saint-felicien-cheese", "label": "saint-felicien-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "valencay-cheese", "label": "valencay-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "feta", "label": "feta", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "halloumi", "label": "halloumi", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "gorgonzolas", "label": "gorgonzolas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "grana-padano", "label": "grana-padano", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mascarpone", "label": "mascarpone", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "parmigiano-reggiano", "label": "parmigiano-reggiano", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "appenzeller-cheese", "label": "appenzeller-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "swiss-gruyeres", "label": "swiss-gruyeres", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "edam", "label": "edam", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "gouda", "label": "gouda", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "maasdam", "label": "maasdam", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "cheeses-from-england", "label": "cheeses-from-england", "shape": "dot", "size": 7}, {"color": "#97c3fc", "id": "cheeses-from-northern-ireland", "label": "cheeses-from-northern-ireland", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "cheeses-from-scotland", "label": "cheeses-from-scotland", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "cheeses-from-wales", "label": "cheeses-from-wales", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "goudas-with-cumin", "label": "goudas-with-cumin", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "old-goudas", "label": "old-goudas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "orange-goudas", "label": "orange-goudas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "red-goudas", "label": "red-goudas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "white-gouda", "label": "white-gouda", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "yellow-gouda", "label": "yellow-gouda", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "young-gouda", "label": "young-gouda", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "applewood-cheese", "label": "applewood-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "ashdown-foresters", "label": "ashdown-foresters", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "beacon-fell-traditional-lancashire-cheese", "label": "beacon-fell-traditional-lancashire-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "beenleigh-blue-cheese", "label": "beenleigh-blue-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "bowland-cheese", "label": "bowland-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "brighton-blue", "label": "brighton-blue", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "buxton-blue", "label": "buxton-blue", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cathedral-city-cheddar", "label": "cathedral-city-cheddar", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "cheddar-cheese", "label": "cheddar-cheese", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "cheshire-cheese", "label": "cheshire-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "chevington-cheese", "label": "chevington-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "coquetdale-cheese", "label": "coquetdale-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cornish-yarg", "label": "cornish-yarg", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "croglin", "label": "croglin", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "derby-cheese", "label": "derby-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dorset-blue-vinney", "label": "dorset-blue-vinney", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dorset-drum", "label": "dorset-drum", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dovedale-cheese", "label": "dovedale-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "duddleswell-cheese", "label": "duddleswell-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fine-fettle-yorkshire", "label": "fine-fettle-yorkshire", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "five-counties-cheese", "label": "five-counties-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "gloucester-cheese", "label": "gloucester-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "harbourne-blue", "label": "harbourne-blue", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lancashire-cheese", "label": "lancashire-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lincolnshire-poacher-cheese", "label": "lincolnshire-poacher-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "little-derby", "label": "little-derby", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lymeswold-cheese", "label": "lymeswold-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "newport-1665", "label": "newport-1665", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "norbury-blue", "label": "norbury-blue", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "parlick-fell-cheese", "label": "parlick-fell-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pilgrims-choice", "label": "pilgrims-choice", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "red-leicester", "label": "red-leicester", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "red-windsor", "label": "red-windsor", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "sage-derby", "label": "sage-derby", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "shropshire-blue", "label": "shropshire-blue", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "stichelton", "label": "stichelton", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "stilton-cheese", "label": "stilton-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "stinking-bishop-cheese", "label": "stinking-bishop-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "suffolk-gold-cheese", "label": "suffolk-gold-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "sussex-slipcote", "label": "sussex-slipcote", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "swaledale-cheese", "label": "swaledale-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "the-cheese-shop", "label": "the-cheese-shop", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "waterloo-cheese", "label": "waterloo-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "wensleydale-cheese", "label": "wensleydale-cheese", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "wrekin-white", "label": "wrekin-white", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "coleraine-cheddar", "label": "coleraine-cheddar", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "bonchester", "label": "bonchester", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "caboc", "label": "caboc", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "crowdie", "label": "crowdie", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dunlop", "label": "dunlop", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "isle-of-mull-cheddar", "label": "isle-of-mull-cheddar", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lanark-blue", "label": "lanark-blue", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "caerphilly", "label": "caerphilly", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pantysgawn", "label": "pantysgawn", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "tintern", "label": "tintern", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "y-fenni", "label": "y-fenni", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cheddar-slices", "label": "cheddar-slices", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "extra-mature-cheddar", "label": "extra-mature-cheddar", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mature-cheddar", "label": "mature-cheddar", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mild-cheddar", "label": "mild-cheddar", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "barn-chicken-eggs", "label": "barn-chicken-eggs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cage-chicken-eggs", "label": "cage-chicken-eggs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "free-range-chicken-eggs", "label": "free-range-chicken-eggs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "raw-milks", "label": "raw-milks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fruit-stirred-yogurts", "label": "fruit-stirred-yogurts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "plain-stirred-yogurts", "label": "plain-stirred-yogurts", "shape": "dot", "size": 1}]);
+        edges = new vis.DataSet([{"from": "dairy-eggs", "label": 1, "to": "cheeses", "weight": 1}, {"from": "dairy-eggs", "label": 1, "to": "condensed-milks", "weight": 1}, {"from": "dairy-eggs", "label": 1, "to": "creams", "weight": 1}, {"from": "dairy-eggs", "label": 1, "to": "eggs", "weight": 1}, {"from": "dairy-eggs", "label": 1, "to": "milks", "weight": 1}, {"from": "dairy-eggs", "label": 1, "to": "whey-powder", "weight": 1}, {"from": "dairy-eggs", "label": 1, "to": "yogurts", "weight": 1}, {"from": "cheeses", "label": 1, "to": "cheeses-from-france", "weight": 1}, {"from": "cheeses", "label": 1, "to": "cheeses-from-greece", "weight": 1}, {"from": "cheeses", "label": 1, "to": "cheeses-from-italy", "weight": 1}, {"from": "cheeses", "label": 1, "to": "cheeses-from-switzerland", "weight": 1}, {"from": "cheeses", "label": 1, "to": "cheeses-from-the-netherlands", "weight": 1}, {"from": "cheeses", "label": 1, "to": "cheeses-from-the-united-kingdom", "weight": 1}, {"from": "creams", "label": 1, "to": "buttermilk", "weight": 1}, {"from": "creams", "label": 1, "to": "sour-cream", "weight": 1}, {"from": "creams", "label": 1, "to": "uht-cream", "weight": 1}, {"from": "eggs", "label": 1, "to": "chicken-eggs", "weight": 1}, {"from": "eggs", "label": 1, "to": "duck-eggs", "weight": 1}, {"from": "eggs", "label": 1, "to": "emu-eggs", "weight": 1}, {"from": "eggs", "label": 1, "to": "fresh-eggs", "weight": 1}, {"from": "eggs", "label": 1, "to": "goose-eggs", "weight": 1}, {"from": "eggs", "label": 1, "to": "guineafowl-eggs", "weight": 1}, {"from": "eggs", "label": 1, "to": "gull-eggs", "weight": 1}, {"from": "eggs", "label": 1, "to": "ostrich-eggs", "weight": 1}, {"from": "eggs", "label": 1, "to": "pheasant-eggs", "weight": 1}, {"from": "eggs", "label": 1, "to": "quail-eggs", "weight": 1}, {"from": "milks", "label": 1, "to": "cow-milks", "weight": 1}, {"from": "milks", "label": 1, "to": "goat-milks", "weight": 1}, {"from": "milks", "label": 1, "to": "lactose-free-milk", "weight": 1}, {"from": "milks", "label": 1, "to": "mountain-milks", "weight": 1}, {"from": "milks", "label": 1, "to": "non-homogenized-milks", "weight": 1}, {"from": "milks", "label": 1, "to": "semi-skimmed-milks", "weight": 1}, {"from": "milks", "label": 1, "to": "sheep-milks", "weight": 1}, {"from": "milks", "label": 1, "to": "skimmed-milks", "weight": 1}, {"from": "milks", "label": 1, "to": "whole-milks", "weight": 1}, {"from": "yogurts", "label": 1, "to": "caramel-yogurts", "weight": 1}, {"from": "yogurts", "label": 1, "to": "chocolate-yogurts", "weight": 1}, {"from": "yogurts", "label": 1, "to": "cow-milk-yogurt", "weight": 1}, {"from": "yogurts", "label": 1, "to": "flavoured-yogurts", "weight": 1}, {"from": "yogurts", "label": 1, "to": "goat-milk-yogurts", "weight": 1}, {"from": "yogurts", "label": 1, "to": "greek-yogurts", "weight": 1}, {"from": "yogurts", "label": 1, "to": "honey-yogurts", "weight": 1}, {"from": "yogurts", "label": 1, "to": "lactose-free-yogurts", "weight": 1}, {"from": "yogurts", "label": 1, "to": "low-fat-yogurts", "weight": 1}, {"from": "yogurts", "label": 1, "to": "mixed-yogurts", "weight": 1}, {"from": "yogurts", "label": 1, "to": "plain-yogurts", "weight": 1}, {"from": "yogurts", "label": 1, "to": "sheep-milk-yogurts", "weight": 1}, {"from": "yogurts", "label": 1, "to": "stirred-yogurts", "weight": 1}, {"from": "yogurts", "label": 1, "to": "sweetened-yogurts", "weight": 1}, {"from": "yogurts", "label": 1, "to": "vanilla-yogurt", "weight": 1}, {"from": "yogurts", "label": 1, "to": "whole-milk-yogurts", "weight": 1}, {"from": "yogurts", "label": 1, "to": "yogurts-with-cereals", "weight": 1}, {"from": "cheeses-from-france", "label": 1, "to": "brie", "weight": 1}, {"from": "cheeses-from-france", "label": 1, "to": "camembert", "weight": 1}, {"from": "cheeses-from-france", "label": 1, "to": "cabecous", "weight": 1}, {"from": "cheeses-from-france", "label": 1, "to": "cancoillottes", "weight": 1}, {"from": "cheeses-from-france", "label": 1, "to": "cheeses-from-corsica", "weight": 1}, {"from": "cheeses-from-france", "label": 1, "to": "epoisses-de-bourgogne", "weight": 1}, {"from": "cheeses-from-france", "label": 1, "to": "french-gruyeres", "weight": 1}, {"from": "cheeses-from-france", "label": 1, "to": "munsters", "weight": 1}, {"from": "cheeses-from-france", "label": 1, "to": "pont-l-eveque", "weight": 1}, {"from": "cheeses-from-france", "label": 1, "to": "saint-felicien-cheese", "weight": 1}, {"from": "cheeses-from-france", "label": 1, "to": "valencay-cheese", "weight": 1}, {"from": "cheeses-from-greece", "label": 1, "to": "feta", "weight": 1}, {"from": "cheeses-from-greece", "label": 1, "to": "halloumi", "weight": 1}, {"from": "cheeses-from-italy", "label": 1, "to": "gorgonzolas", "weight": 1}, {"from": "cheeses-from-italy", "label": 1, "to": "grana-padano", "weight": 1}, {"from": "cheeses-from-italy", "label": 1, "to": "mascarpone", "weight": 1}, {"from": "cheeses-from-italy", "label": 1, "to": "parmigiano-reggiano", "weight": 1}, {"from": "cheeses-from-switzerland", "label": 1, "to": "appenzeller-cheese", "weight": 1}, {"from": "cheeses-from-switzerland", "label": 1, "to": "swiss-gruyeres", "weight": 1}, {"from": "cheeses-from-the-netherlands", "label": 1, "to": "edam", "weight": 1}, {"from": "cheeses-from-the-netherlands", "label": 1, "to": "gouda", "weight": 1}, {"from": "cheeses-from-the-netherlands", "label": 1, "to": "maasdam", "weight": 1}, {"from": "cheeses-from-the-united-kingdom", "label": 1, "to": "cheeses-from-england", "weight": 1}, {"from": "cheeses-from-the-united-kingdom", "label": 1, "to": "cheeses-from-northern-ireland", "weight": 1}, {"from": "cheeses-from-the-united-kingdom", "label": 1, "to": "cheeses-from-scotland", "weight": 1}, {"from": "cheeses-from-the-united-kingdom", "label": 1, "to": "cheeses-from-wales", "weight": 1}, {"from": "gouda", "label": 1, "to": "goudas-with-cumin", "weight": 1}, {"from": "gouda", "label": 1, "to": "old-goudas", "weight": 1}, {"from": "gouda", "label": 1, "to": "orange-goudas", "weight": 1}, {"from": "gouda", "label": 1, "to": "red-goudas", "weight": 1}, {"from": "gouda", "label": 1, "to": "white-gouda", "weight": 1}, {"from": "gouda", "label": 1, "to": "yellow-gouda", "weight": 1}, {"from": "gouda", "label": 1, "to": "young-gouda", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "applewood-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "ashdown-foresters", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "beacon-fell-traditional-lancashire-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "beenleigh-blue-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "bowland-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "brighton-blue", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "buxton-blue", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "cathedral-city-cheddar", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "cheddar-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "cheshire-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "chevington-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "coquetdale-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "cornish-yarg", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "croglin", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "derby-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "dorset-blue-vinney", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "dorset-drum", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "dovedale-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "duddleswell-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "fine-fettle-yorkshire", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "five-counties-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "gloucester-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "harbourne-blue", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "lancashire-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "lincolnshire-poacher-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "little-derby", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "lymeswold-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "newport-1665", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "norbury-blue", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "parlick-fell-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "pilgrims-choice", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "red-leicester", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "red-windsor", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "sage-derby", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "shropshire-blue", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "stichelton", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "stilton-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "stinking-bishop-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "suffolk-gold-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "sussex-slipcote", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "swaledale-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "the-cheese-shop", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "waterloo-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "wensleydale-cheese", "weight": 1}, {"from": "cheeses-from-england", "label": 1, "to": "wrekin-white", "weight": 1}, {"from": "cheeses-from-northern-ireland", "label": 1, "to": "coleraine-cheddar", "weight": 1}, {"from": "cheeses-from-scotland", "label": 1, "to": "bonchester", "weight": 1}, {"from": "cheeses-from-scotland", "label": 1, "to": "caboc", "weight": 1}, {"from": "cheeses-from-scotland", "label": 1, "to": "crowdie", "weight": 1}, {"from": "cheeses-from-scotland", "label": 1, "to": "dunlop", "weight": 1}, {"from": "cheeses-from-scotland", "label": 1, "to": "isle-of-mull-cheddar", "weight": 1}, {"from": "cheeses-from-scotland", "label": 1, "to": "lanark-blue", "weight": 1}, {"from": "cheeses-from-wales", "label": 1, "to": "caerphilly", "weight": 1}, {"from": "cheeses-from-wales", "label": 1, "to": "pantysgawn", "weight": 1}, {"from": "cheeses-from-wales", "label": 1, "to": "tintern", "weight": 1}, {"from": "cheeses-from-wales", "label": 1, "to": "y-fenni", "weight": 1}, {"from": "cheddar-cheese", "label": 1, "to": "cheddar-slices", "weight": 1}, {"from": "cheddar-cheese", "label": 1, "to": "extra-mature-cheddar", "weight": 1}, {"from": "cheddar-cheese", "label": 1, "to": "mature-cheddar", "weight": 1}, {"from": "cheddar-cheese", "label": 1, "to": "mild-cheddar", "weight": 1}, {"from": "chicken-eggs", "label": 1, "to": "barn-chicken-eggs", "weight": 1}, {"from": "chicken-eggs", "label": 1, "to": "cage-chicken-eggs", "weight": 1}, {"from": "chicken-eggs", "label": 1, "to": "free-range-chicken-eggs", "weight": 1}, {"from": "non-homogenized-milks", "label": 1, "to": "raw-milks", "weight": 1}, {"from": "stirred-yogurts", "label": 1, "to": "fruit-stirred-yogurts", "weight": 1}, {"from": "stirred-yogurts", "label": 1, "to": "plain-stirred-yogurts", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+        network.on("stabilizationProgress", function(params) {
+      		document.getElementById('loadingBar').removeAttribute("style");
+	        var maxWidth = 496;
+	        var minWidth = 20;
+	        var widthFactor = params.iterations/params.total;
+	        var width = Math.max(minWidth,maxWidth * widthFactor);
+
+	        document.getElementById('bar').style.width = width + 'px';
+	        document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+	    });
+	    network.once("stabilizationIterationsDone", function() {
+	        document.getElementById('text').innerHTML = '100%';
+	        document.getElementById('bar').style.width = '496px';
+	        document.getElementById('loadingBar').style.opacity = 0;
+	        // really clean the dom element
+	        setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+	    });
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

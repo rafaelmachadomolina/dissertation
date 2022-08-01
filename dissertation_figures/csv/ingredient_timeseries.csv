@@ -1,0 +1,741 @@
+cutoff_date;category_id;category;qnt_ingredients
+2021-01-01;101;Fish & Seafoods;61
+2021-01-01;102;Meat & Poultry;219
+2021-01-01;103;Vegetables;227
+2021-01-01;104;Z Herbs (Old Category);22
+2021-01-01;105;Nuts & Seeds;19
+2021-01-01;106;Z Spices  (Old Category);47
+2021-01-01;107;Dairy & Eggs;131
+2021-01-01;108;Fruits;76
+2021-01-01;109;Grains, Rice, Pasta & Noodles;34
+2021-01-01;110;Oils, Vinegars & Flavourings;62
+2021-01-01;111;Z Additives  (Old Category);38
+2021-01-01;112;Flowers;3
+2021-01-01;113;Fungi;1
+2021-01-01;114;Z Beverages  (Old Category);97
+2021-01-01;115;Champagnes & Wines;18
+2021-01-01;116;Spirits;44
+2021-01-01;117;Z Soft Drinks  (Old Category);3
+2021-01-01;118;Z Juices, Purees and Syrups  (Old Category);20
+2021-01-01;119;Beers, lagers & Ales;5
+2021-01-01;120;Z Liqueurs  (Old Category);23
+2021-01-01;124;Z Hot Drinks (non alcoholic) (Old Category);8
+2021-01-01;125;Z Other (dry)  (Old Category);13
+2021-01-01;126;Z Other (wet)  (Old Category);7
+2021-01-01;127;Baked Goods;174
+2021-01-01;128;Z Desserts & Confectionery (Old Category);188
+2021-01-01;129;Z Miscellaneous  (Old Category);343
+2021-01-01;130;Z Store Cupboard  (Old Category);135
+2021-01-01;131;Z Chilled Goods  (Old Category);4
+2021-01-01;132;Z Ambient Goods  (Old Category);100
+2021-01-01;133;Z Frozen Goods  (Old Category);28
+2021-01-01;136;Baking Mixes & Ingredients;3
+2021-01-01;138;Breakfast Cereals;3
+2021-01-01;139;Canned Products;2
+2021-01-01;147;Gravy & Cooking Sauces;1
+2021-01-01;148;Herbs & Spices;1
+2021-01-01;149;Hot Beverages;1
+2021-01-01;150;Jam, Honey & Spread;2
+2021-01-01;156;Plant Based Products;1
+2021-02-01;101;Fish & Seafoods;109
+2021-02-01;102;Meat & Poultry;164
+2021-02-01;103;Vegetables;222
+2021-02-01;104;Z Herbs (Old Category);58
+2021-02-01;105;Nuts & Seeds;7
+2021-02-01;106;Z Spices  (Old Category);37
+2021-02-01;107;Dairy & Eggs;163
+2021-02-01;108;Fruits;72
+2021-02-01;109;Grains, Rice, Pasta & Noodles;69
+2021-02-01;110;Oils, Vinegars & Flavourings;95
+2021-02-01;111;Z Additives  (Old Category);5
+2021-02-01;112;Flowers;1
+2021-02-01;113;Fungi;3
+2021-02-01;114;Z Beverages  (Old Category);31
+2021-02-01;116;Spirits;2
+2021-02-01;117;Z Soft Drinks  (Old Category);134
+2021-02-01;118;Z Juices, Purees and Syrups  (Old Category);14
+2021-02-01;120;Z Liqueurs  (Old Category);4
+2021-02-01;124;Z Hot Drinks (non alcoholic) (Old Category);14
+2021-02-01;125;Z Other (dry)  (Old Category);33
+2021-02-01;126;Z Other (wet)  (Old Category);14
+2021-02-01;127;Baked Goods;239
+2021-02-01;128;Z Desserts & Confectionery (Old Category);202
+2021-02-01;129;Z Miscellaneous  (Old Category);384
+2021-02-01;130;Z Store Cupboard  (Old Category);307
+2021-02-01;131;Z Chilled Goods  (Old Category);12
+2021-02-01;132;Z Ambient Goods  (Old Category);63
+2021-02-01;133;Z Frozen Goods  (Old Category);28
+2021-02-01;135;Non Food;1
+2021-02-01;136;Baking Mixes & Ingredients;3
+2021-02-01;138;Breakfast Cereals;1
+2021-02-01;139;Canned Products;3
+2021-02-01;141;Cold Beverages;2
+2021-02-01;142;Condiments & Pickles;14
+2021-02-01;143;Confectionary And Cakes;1
+2021-02-01;145;Desserts;1
+2021-02-01;146;Foods Of The World;4
+2021-02-01;147;Gravy & Cooking Sauces;7
+2021-02-01;148;Herbs & Spices;17
+2021-02-01;151;Pies, Sausage Rolls & Savouries;1
+2021-02-01;152;Prepared Foods/Meals;121
+2021-02-01;156;Plant Based Products;4
+2021-03-01;101;Fish & Seafoods;57
+2021-03-01;102;Meat & Poultry;325
+2021-03-01;103;Vegetables;619
+2021-03-01;104;Z Herbs (Old Category);9
+2021-03-01;105;Nuts & Seeds;42
+2021-03-01;106;Z Spices  (Old Category);9
+2021-03-01;107;Dairy & Eggs;301
+2021-03-01;108;Fruits;223
+2021-03-01;109;Grains, Rice, Pasta & Noodles;179
+2021-03-01;110;Oils, Vinegars & Flavourings;101
+2021-03-01;111;Z Additives  (Old Category);1
+2021-03-01;112;Flowers;7
+2021-03-01;113;Fungi;65
+2021-03-01;114;Z Beverages  (Old Category);4
+2021-03-01;115;Champagnes & Wines;24
+2021-03-01;116;Spirits;15
+2021-03-01;117;Z Soft Drinks  (Old Category);11
+2021-03-01;118;Z Juices, Purees and Syrups  (Old Category);39
+2021-03-01;119;Beers, lagers & Ales;4
+2021-03-01;125;Z Other (dry)  (Old Category);15
+2021-03-01;126;Z Other (wet)  (Old Category);10
+2021-03-01;127;Baked Goods;124
+2021-03-01;128;Z Desserts & Confectionery (Old Category);8
+2021-03-01;129;Z Miscellaneous  (Old Category);65
+2021-03-01;130;Z Store Cupboard  (Old Category);20
+2021-03-01;131;Z Chilled Goods  (Old Category);13
+2021-03-01;132;Z Ambient Goods  (Old Category);82
+2021-03-01;133;Z Frozen Goods  (Old Category);189
+2021-03-01;135;Non Food;120
+2021-03-01;136;Baking Mixes & Ingredients;129
+2021-03-01;137;Biscuits, Crisps And Snacks;94
+2021-03-01;138;Breakfast Cereals;57
+2021-03-01;139;Canned Products;139
+2021-03-01;140;Cocktails And Liquers;3
+2021-03-01;141;Cold Beverages;72
+2021-03-01;142;Condiments & Pickles;137
+2021-03-01;143;Confectionary And Cakes;26
+2021-03-01;144;Deli;36
+2021-03-01;145;Desserts;66
+2021-03-01;146;Foods Of The World;144
+2021-03-01;147;Gravy & Cooking Sauces;93
+2021-03-01;148;Herbs & Spices;380
+2021-03-01;149;Hot Beverages;62
+2021-03-01;150;Jam, Honey & Spread;24
+2021-03-01;151;Pies, Sausage Rolls & Savouries;37
+2021-03-01;152;Prepared Foods/Meals;1047
+2021-03-01;153;Salad;502
+2021-03-01;155;Sugar & Sweeteners;75
+2021-03-01;156;Plant Based Products;152
+2021-04-01;101;Fish & Seafoods;138
+2021-04-01;102;Meat & Poultry;380
+2021-04-01;103;Vegetables;327
+2021-04-01;105;Nuts & Seeds;9
+2021-04-01;107;Dairy & Eggs;344
+2021-04-01;108;Fruits;186
+2021-04-01;109;Grains, Rice, Pasta & Noodles;77
+2021-04-01;110;Oils, Vinegars & Flavourings;44
+2021-04-01;111;Z Additives  (Old Category);1
+2021-04-01;113;Fungi;25
+2021-04-01;115;Champagnes & Wines;2
+2021-04-01;116;Spirits;4
+2021-04-01;119;Beers, lagers & Ales;74
+2021-04-01;127;Baked Goods;190
+2021-04-01;128;Z Desserts & Confectionery (Old Category);1
+2021-04-01;129;Z Miscellaneous  (Old Category);2
+2021-04-01;131;Z Chilled Goods  (Old Category);7
+2021-04-01;132;Z Ambient Goods  (Old Category);6
+2021-04-01;133;Z Frozen Goods  (Old Category);28
+2021-04-01;135;Non Food;21
+2021-04-01;136;Baking Mixes & Ingredients;175
+2021-04-01;137;Biscuits, Crisps And Snacks;101
+2021-04-01;138;Breakfast Cereals;63
+2021-04-01;139;Canned Products;76
+2021-04-01;140;Cocktails And Liquers;4
+2021-04-01;141;Cold Beverages;67
+2021-04-01;142;Condiments & Pickles;158
+2021-04-01;143;Confectionary And Cakes;53
+2021-04-01;144;Deli;39
+2021-04-01;145;Desserts;152
+2021-04-01;146;Foods Of The World;35
+2021-04-01;147;Gravy & Cooking Sauces;165
+2021-04-01;148;Herbs & Spices;149
+2021-04-01;149;Hot Beverages;86
+2021-04-01;150;Jam, Honey & Spread;50
+2021-04-01;151;Pies, Sausage Rolls & Savouries;23
+2021-04-01;152;Prepared Foods/Meals;190
+2021-04-01;153;Salad;109
+2021-04-01;154;Soup;3
+2021-04-01;155;Sugar & Sweeteners;30
+2021-04-01;156;Plant Based Products;34
+2021-05-01;101;Fish & Seafoods;570
+2021-05-01;102;Meat & Poultry;1409
+2021-05-01;103;Vegetables;1221
+2021-05-01;105;Nuts & Seeds;10
+2021-05-01;107;Dairy & Eggs;818
+2021-05-01;108;Fruits;349
+2021-05-01;109;Grains, Rice, Pasta & Noodles;243
+2021-05-01;110;Oils, Vinegars & Flavourings;136
+2021-05-01;112;Flowers;3
+2021-05-01;113;Fungi;1
+2021-05-01;115;Champagnes & Wines;426
+2021-05-01;116;Spirits;361
+2021-05-01;119;Beers, lagers & Ales;148
+2021-05-01;126;Z Other (wet)  (Old Category);1
+2021-05-01;127;Baked Goods;668
+2021-05-01;128;Z Desserts & Confectionery (Old Category);4
+2021-05-01;129;Z Miscellaneous  (Old Category);12
+2021-05-01;130;Z Store Cupboard  (Old Category);31
+2021-05-01;131;Z Chilled Goods  (Old Category);1
+2021-05-01;135;Non Food;18
+2021-05-01;136;Baking Mixes & Ingredients;516
+2021-05-01;137;Biscuits, Crisps And Snacks;500
+2021-05-01;138;Breakfast Cereals;192
+2021-05-01;139;Canned Products;444
+2021-05-01;141;Cold Beverages;1452
+2021-05-01;142;Condiments & Pickles;604
+2021-05-01;143;Confectionary And Cakes;908
+2021-05-01;144;Deli;201
+2021-05-01;145;Desserts;1292
+2021-05-01;146;Foods Of The World;173
+2021-05-01;147;Gravy & Cooking Sauces;553
+2021-05-01;148;Herbs & Spices;307
+2021-05-01;149;Hot Beverages;462
+2021-05-01;150;Jam, Honey & Spread;248
+2021-05-01;151;Pies, Sausage Rolls & Savouries;416
+2021-05-01;152;Prepared Foods/Meals;1317
+2021-05-01;153;Salad;271
+2021-05-01;154;Soup;76
+2021-05-01;155;Sugar & Sweeteners;144
+2021-05-01;156;Plant Based Products;199
+2021-06-01;101;Fish & Seafoods;46
+2021-06-01;102;Meat & Poultry;76
+2021-06-01;103;Vegetables;74
+2021-06-01;105;Nuts & Seeds;3
+2021-06-01;107;Dairy & Eggs;49
+2021-06-01;108;Fruits;42
+2021-06-01;109;Grains, Rice, Pasta & Noodles;14
+2021-06-01;110;Oils, Vinegars & Flavourings;12
+2021-06-01;111;Z Additives  (Old Category);2
+2021-06-01;113;Fungi;6
+2021-06-01;115;Champagnes & Wines;50
+2021-06-01;116;Spirits;79
+2021-06-01;117;Z Soft Drinks  (Old Category);1
+2021-06-01;118;Z Juices, Purees and Syrups  (Old Category);2
+2021-06-01;119;Beers, lagers & Ales;13
+2021-06-01;126;Z Other (wet)  (Old Category);2
+2021-06-01;127;Baked Goods;25
+2021-06-01;129;Z Miscellaneous  (Old Category);4
+2021-06-01;130;Z Store Cupboard  (Old Category);1
+2021-06-01;132;Z Ambient Goods  (Old Category);3
+2021-06-01;133;Z Frozen Goods  (Old Category);5
+2021-06-01;135;Non Food;29
+2021-06-01;136;Baking Mixes & Ingredients;36
+2021-06-01;137;Biscuits, Crisps And Snacks;7
+2021-06-01;138;Breakfast Cereals;3
+2021-06-01;139;Canned Products;9
+2021-06-01;140;Cocktails And Liquers;3
+2021-06-01;141;Cold Beverages;52
+2021-06-01;142;Condiments & Pickles;18
+2021-06-01;143;Confectionary And Cakes;14
+2021-06-01;144;Deli;5
+2021-06-01;145;Desserts;28
+2021-06-01;146;Foods Of The World;6
+2021-06-01;147;Gravy & Cooking Sauces;7
+2021-06-01;148;Herbs & Spices;27
+2021-06-01;149;Hot Beverages;4
+2021-06-01;150;Jam, Honey & Spread;4
+2021-06-01;151;Pies, Sausage Rolls & Savouries;9
+2021-06-01;152;Prepared Foods/Meals;79
+2021-06-01;153;Salad;15
+2021-06-01;155;Sugar & Sweeteners;3
+2021-06-01;156;Plant Based Products;16
+2021-07-01;101;Fish & Seafoods;108
+2021-07-01;102;Meat & Poultry;1114
+2021-07-01;103;Vegetables;199
+2021-07-01;105;Nuts & Seeds;3
+2021-07-01;106;Z Spices  (Old Category);1
+2021-07-01;107;Dairy & Eggs;255
+2021-07-01;108;Fruits;80
+2021-07-01;109;Grains, Rice, Pasta & Noodles;35
+2021-07-01;110;Oils, Vinegars & Flavourings;102
+2021-07-01;112;Flowers;1
+2021-07-01;114;Z Beverages  (Old Category);1
+2021-07-01;115;Champagnes & Wines;1
+2021-07-01;116;Spirits;2
+2021-07-01;118;Z Juices, Purees and Syrups  (Old Category);1
+2021-07-01;119;Beers, lagers & Ales;9
+2021-07-01;125;Z Other (dry)  (Old Category);17
+2021-07-01;126;Z Other (wet)  (Old Category);8
+2021-07-01;127;Baked Goods;340
+2021-07-01;128;Z Desserts & Confectionery (Old Category);2
+2021-07-01;129;Z Miscellaneous  (Old Category);1
+2021-07-01;130;Z Store Cupboard  (Old Category);2
+2021-07-01;131;Z Chilled Goods  (Old Category);1
+2021-07-01;133;Z Frozen Goods  (Old Category);7
+2021-07-01;135;Non Food;116
+2021-07-01;136;Baking Mixes & Ingredients;65
+2021-07-01;137;Biscuits, Crisps And Snacks;353
+2021-07-01;138;Breakfast Cereals;61
+2021-07-01;139;Canned Products;22
+2021-07-01;140;Cocktails And Liquers;1
+2021-07-01;141;Cold Beverages;805
+2021-07-01;142;Condiments & Pickles;271
+2021-07-01;143;Confectionary And Cakes;604
+2021-07-01;144;Deli;95
+2021-07-01;145;Desserts;269
+2021-07-01;146;Foods Of The World;16
+2021-07-01;147;Gravy & Cooking Sauces;151
+2021-07-01;148;Herbs & Spices;97
+2021-07-01;149;Hot Beverages;86
+2021-07-01;150;Jam, Honey & Spread;47
+2021-07-01;151;Pies, Sausage Rolls & Savouries;67
+2021-07-01;152;Prepared Foods/Meals;45
+2021-07-01;153;Salad;22
+2021-07-01;154;Soup;38
+2021-07-01;155;Sugar & Sweeteners;45
+2021-07-01;156;Plant Based Products;48
+2021-08-01;101;Fish & Seafoods;691
+2021-08-01;102;Meat & Poultry;3009
+2021-08-01;103;Vegetables;1796
+2021-08-01;104;Z Herbs (Old Category);1
+2021-08-01;105;Nuts & Seeds;5
+2021-08-01;107;Dairy & Eggs;936
+2021-08-01;108;Fruits;542
+2021-08-01;109;Grains, Rice, Pasta & Noodles;255
+2021-08-01;110;Oils, Vinegars & Flavourings;156
+2021-08-01;112;Flowers;35
+2021-08-01;113;Fungi;34
+2021-08-01;114;Z Beverages  (Old Category);2
+2021-08-01;115;Champagnes & Wines;66
+2021-08-01;116;Spirits;55
+2021-08-01;117;Z Soft Drinks  (Old Category);2
+2021-08-01;118;Z Juices, Purees and Syrups  (Old Category);4
+2021-08-01;119;Beers, lagers & Ales;68
+2021-08-01;125;Z Other (dry)  (Old Category);5
+2021-08-01;126;Z Other (wet)  (Old Category);1
+2021-08-01;127;Baked Goods;1227
+2021-08-01;128;Z Desserts & Confectionery (Old Category);4
+2021-08-01;129;Z Miscellaneous  (Old Category);8
+2021-08-01;130;Z Store Cupboard  (Old Category);12
+2021-08-01;133;Z Frozen Goods  (Old Category);5
+2021-08-01;135;Non Food;39
+2021-08-01;136;Baking Mixes & Ingredients;462
+2021-08-01;137;Biscuits, Crisps And Snacks;375
+2021-08-01;138;Breakfast Cereals;183
+2021-08-01;139;Canned Products;418
+2021-08-01;140;Cocktails And Liquers;1
+2021-08-01;141;Cold Beverages;936
+2021-08-01;142;Condiments & Pickles;611
+2021-08-01;143;Confectionary And Cakes;848
+2021-08-01;144;Deli;185
+2021-08-01;145;Desserts;1308
+2021-08-01;146;Foods Of The World;131
+2021-08-01;147;Gravy & Cooking Sauces;539
+2021-08-01;148;Herbs & Spices;285
+2021-08-01;149;Hot Beverages;576
+2021-08-01;150;Jam, Honey & Spread;120
+2021-08-01;151;Pies, Sausage Rolls & Savouries;471
+2021-08-01;152;Prepared Foods/Meals;1407
+2021-08-01;153;Salad;182
+2021-08-01;154;Soup;92
+2021-08-01;155;Sugar & Sweeteners;303
+2021-08-01;156;Plant Based Products;222
+2021-09-01;101;Fish & Seafoods;966
+2021-09-01;102;Meat & Poultry;3274
+2021-09-01;103;Vegetables;3138
+2021-09-01;105;Nuts & Seeds;12
+2021-09-01;106;Z Spices  (Old Category);1
+2021-09-01;107;Dairy & Eggs;2209
+2021-09-01;108;Fruits;1096
+2021-09-01;109;Grains, Rice, Pasta & Noodles;550
+2021-09-01;110;Oils, Vinegars & Flavourings;281
+2021-09-01;113;Fungi;11
+2021-09-01;115;Champagnes & Wines;1353
+2021-09-01;116;Spirits;1189
+2021-09-01;117;Z Soft Drinks  (Old Category);1
+2021-09-01;118;Z Juices, Purees and Syrups  (Old Category);5
+2021-09-01;119;Beers, lagers & Ales;478
+2021-09-01;125;Z Other (dry)  (Old Category);1
+2021-09-01;127;Baked Goods;647
+2021-09-01;128;Z Desserts & Confectionery (Old Category);3
+2021-09-01;130;Z Store Cupboard  (Old Category);4
+2021-09-01;133;Z Frozen Goods  (Old Category);3
+2021-09-01;135;Non Food;264
+2021-09-01;136;Baking Mixes & Ingredients;2141
+2021-09-01;137;Biscuits, Crisps And Snacks;1803
+2021-09-01;138;Breakfast Cereals;499
+2021-09-01;139;Canned Products;1234
+2021-09-01;141;Cold Beverages;3469
+2021-09-01;142;Condiments & Pickles;1734
+2021-09-01;143;Confectionary And Cakes;1630
+2021-09-01;144;Deli;580
+2021-09-01;145;Desserts;3300
+2021-09-01;146;Foods Of The World;67
+2021-09-01;147;Gravy & Cooking Sauces;1347
+2021-09-01;148;Herbs & Spices;1026
+2021-09-01;149;Hot Beverages;1197
+2021-09-01;150;Jam, Honey & Spread;83
+2021-09-01;151;Pies, Sausage Rolls & Savouries;127
+2021-09-01;152;Prepared Foods/Meals;4812
+2021-09-01;153;Salad;600
+2021-09-01;154;Soup;38
+2021-09-01;155;Sugar & Sweeteners;1021
+2021-09-01;156;Plant Based Products;485
+2021-10-01;101;Fish & Seafoods;1266
+2021-10-01;102;Meat & Poultry;5637
+2021-10-01;103;Vegetables;3677
+2021-10-01;105;Nuts & Seeds;1
+2021-10-01;106;Z Spices  (Old Category);5
+2021-10-01;107;Dairy & Eggs;2536
+2021-10-01;108;Fruits;1247
+2021-10-01;109;Grains, Rice, Pasta & Noodles;987
+2021-10-01;110;Oils, Vinegars & Flavourings;361
+2021-10-01;112;Flowers;3
+2021-10-01;113;Fungi;13
+2021-10-01;115;Champagnes & Wines;2666
+2021-10-01;116;Spirits;2345
+2021-10-01;118;Z Juices, Purees and Syrups  (Old Category);4
+2021-10-01;119;Beers, lagers & Ales;980
+2021-10-01;124;Z Hot Drinks (non alcoholic) (Old Category);2
+2021-10-01;125;Z Other (dry)  (Old Category);1
+2021-10-01;127;Baked Goods;561
+2021-10-01;128;Z Desserts & Confectionery (Old Category);3
+2021-10-01;130;Z Store Cupboard  (Old Category);5
+2021-10-01;131;Z Chilled Goods  (Old Category);2
+2021-10-01;135;Non Food;436
+2021-10-01;136;Baking Mixes & Ingredients;1310
+2021-10-01;137;Biscuits, Crisps And Snacks;2971
+2021-10-01;138;Breakfast Cereals;688
+2021-10-01;139;Canned Products;1523
+2021-10-01;140;Cocktails And Liquers;5
+2021-10-01;141;Cold Beverages;5125
+2021-10-01;142;Condiments & Pickles;2255
+2021-10-01;143;Confectionary And Cakes;1340
+2021-10-01;144;Deli;819
+2021-10-01;145;Desserts;4597
+2021-10-01;146;Foods Of The World;254
+2021-10-01;147;Gravy & Cooking Sauces;1829
+2021-10-01;148;Herbs & Spices;1620
+2021-10-01;149;Hot Beverages;1638
+2021-10-01;150;Jam, Honey & Spread;45
+2021-10-01;151;Pies, Sausage Rolls & Savouries;54
+2021-10-01;152;Prepared Foods/Meals;6165
+2021-10-01;153;Salad;643
+2021-10-01;154;Soup;18
+2021-10-01;155;Sugar & Sweeteners;1332
+2021-10-01;156;Plant Based Products;870
+2021-11-01;101;Fish & Seafoods;20
+2021-11-01;102;Meat & Poultry;140
+2021-11-01;103;Vegetables;299
+2021-11-01;107;Dairy & Eggs;88
+2021-11-01;108;Fruits;72
+2021-11-01;109;Grains, Rice, Pasta & Noodles;17
+2021-11-01;110;Oils, Vinegars & Flavourings;11
+2021-11-01;113;Fungi;12
+2021-11-01;115;Champagnes & Wines;1
+2021-11-01;117;Z Soft Drinks  (Old Category);2
+2021-11-01;118;Z Juices, Purees and Syrups  (Old Category);1
+2021-11-01;119;Beers, lagers & Ales;1
+2021-11-01;127;Baked Goods;60
+2021-11-01;128;Z Desserts & Confectionery (Old Category);3
+2021-11-01;129;Z Miscellaneous  (Old Category);6
+2021-11-01;130;Z Store Cupboard  (Old Category);3
+2021-11-01;132;Z Ambient Goods  (Old Category);1
+2021-11-01;133;Z Frozen Goods  (Old Category);3
+2021-11-01;135;Non Food;6
+2021-11-01;136;Baking Mixes & Ingredients;81
+2021-11-01;137;Biscuits, Crisps And Snacks;79
+2021-11-01;138;Breakfast Cereals;2
+2021-11-01;139;Canned Products;13
+2021-11-01;140;Cocktails And Liquers;4
+2021-11-01;141;Cold Beverages;24
+2021-11-01;142;Condiments & Pickles;30
+2021-11-01;143;Confectionary And Cakes;23
+2021-11-01;144;Deli;30
+2021-11-01;145;Desserts;56
+2021-11-01;146;Foods Of The World;5
+2021-11-01;147;Gravy & Cooking Sauces;21
+2021-11-01;148;Herbs & Spices;52
+2021-11-01;149;Hot Beverages;11
+2021-11-01;150;Jam, Honey & Spread;5
+2021-11-01;151;Pies, Sausage Rolls & Savouries;23
+2021-11-01;152;Prepared Foods/Meals;113
+2021-11-01;153;Salad;50
+2021-11-01;154;Soup;5
+2021-11-01;155;Sugar & Sweeteners;8
+2021-11-01;156;Plant Based Products;14
+2021-12-01;101;Fish & Seafoods;59
+2021-12-01;102;Meat & Poultry;141
+2021-12-01;103;Vegetables;251
+2021-12-01;105;Nuts & Seeds;2
+2021-12-01;107;Dairy & Eggs;190
+2021-12-01;108;Fruits;103
+2021-12-01;109;Grains, Rice, Pasta & Noodles;54
+2021-12-01;110;Oils, Vinegars & Flavourings;27
+2021-12-01;113;Fungi;23
+2021-12-01;114;Z Beverages  (Old Category);2
+2021-12-01;115;Champagnes & Wines;4
+2021-12-01;116;Spirits;2
+2021-12-01;117;Z Soft Drinks  (Old Category);1
+2021-12-01;119;Beers, lagers & Ales;1
+2021-12-01;124;Z Hot Drinks (non alcoholic) (Old Category);1
+2021-12-01;127;Baked Goods;146
+2021-12-01;128;Z Desserts & Confectionery (Old Category);8
+2021-12-01;129;Z Miscellaneous  (Old Category);38
+2021-12-01;130;Z Store Cupboard  (Old Category);15
+2021-12-01;131;Z Chilled Goods  (Old Category);1
+2021-12-01;132;Z Ambient Goods  (Old Category);1
+2021-12-01;135;Non Food;26
+2021-12-01;136;Baking Mixes & Ingredients;92
+2021-12-01;137;Biscuits, Crisps And Snacks;28
+2021-12-01;138;Breakfast Cereals;7
+2021-12-01;139;Canned Products;50
+2021-12-01;140;Cocktails And Liquers;7
+2021-12-01;141;Cold Beverages;18
+2021-12-01;142;Condiments & Pickles;89
+2021-12-01;143;Confectionary And Cakes;64
+2021-12-01;144;Deli;68
+2021-12-01;145;Desserts;90
+2021-12-01;146;Foods Of The World;21
+2021-12-01;147;Gravy & Cooking Sauces;27
+2021-12-01;148;Herbs & Spices;145
+2021-12-01;149;Hot Beverages;13
+2021-12-01;150;Jam, Honey & Spread;26
+2021-12-01;151;Pies, Sausage Rolls & Savouries;1
+2021-12-01;152;Prepared Foods/Meals;588
+2021-12-01;153;Salad;67
+2021-12-01;154;Soup;6
+2021-12-01;155;Sugar & Sweeteners;16
+2021-12-01;156;Plant Based Products;22
+2022-01-01;101;Fish & Seafoods;215
+2022-01-01;102;Meat & Poultry;410
+2022-01-01;103;Vegetables;341
+2022-01-01;104;Z Herbs (Old Category);2
+2022-01-01;105;Nuts & Seeds;16
+2022-01-01;106;Z Spices  (Old Category);9
+2022-01-01;107;Dairy & Eggs;276
+2022-01-01;108;Fruits;187
+2022-01-01;109;Grains, Rice, Pasta & Noodles;73
+2022-01-01;110;Oils, Vinegars & Flavourings;60
+2022-01-01;111;Z Additives  (Old Category);2
+2022-01-01;112;Flowers;1
+2022-01-01;113;Fungi;15
+2022-01-01;114;Z Beverages  (Old Category);1
+2022-01-01;115;Champagnes & Wines;84
+2022-01-01;117;Z Soft Drinks  (Old Category);2
+2022-01-01;118;Z Juices, Purees and Syrups  (Old Category);3
+2022-01-01;119;Beers, lagers & Ales;1
+2022-01-01;122;Z Mocktails (non alcoholic cocktails)  (Old Category);1
+2022-01-01;125;Z Other (dry)  (Old Category);1
+2022-01-01;126;Z Other (wet)  (Old Category);2
+2022-01-01;127;Baked Goods;332
+2022-01-01;128;Z Desserts & Confectionery (Old Category);6
+2022-01-01;129;Z Miscellaneous  (Old Category);4
+2022-01-01;130;Z Store Cupboard  (Old Category);3
+2022-01-01;132;Z Ambient Goods  (Old Category);1
+2022-01-01;133;Z Frozen Goods  (Old Category);1
+2022-01-01;135;Non Food;18
+2022-01-01;136;Baking Mixes & Ingredients;128
+2022-01-01;137;Biscuits, Crisps And Snacks;31
+2022-01-01;138;Breakfast Cereals;12
+2022-01-01;139;Canned Products;33
+2022-01-01;140;Cocktails And Liquers;3
+2022-01-01;141;Cold Beverages;101
+2022-01-01;142;Condiments & Pickles;111
+2022-01-01;143;Confectionary And Cakes;78
+2022-01-01;144;Deli;37
+2022-01-01;145;Desserts;146
+2022-01-01;146;Foods Of The World;28
+2022-01-01;147;Gravy & Cooking Sauces;109
+2022-01-01;148;Herbs & Spices;140
+2022-01-01;149;Hot Beverages;60
+2022-01-01;150;Jam, Honey & Spread;46
+2022-01-01;151;Pies, Sausage Rolls & Savouries;28
+2022-01-01;152;Prepared Foods/Meals;220
+2022-01-01;153;Salad;92
+2022-01-01;154;Soup;7
+2022-01-01;155;Sugar & Sweeteners;22
+2022-01-01;156;Plant Based Products;28
+2022-02-01;101;Fish & Seafoods;344
+2022-02-01;102;Meat & Poultry;1407
+2022-02-01;103;Vegetables;1150
+2022-02-01;104;Z Herbs (Old Category);2
+2022-02-01;105;Nuts & Seeds;7
+2022-02-01;106;Z Spices  (Old Category);1
+2022-02-01;107;Dairy & Eggs;755
+2022-02-01;108;Fruits;327
+2022-02-01;109;Grains, Rice, Pasta & Noodles;204
+2022-02-01;110;Oils, Vinegars & Flavourings;117
+2022-02-01;112;Flowers;2
+2022-02-01;113;Fungi;18
+2022-02-01;114;Z Beverages  (Old Category);1
+2022-02-01;115;Champagnes & Wines;460
+2022-02-01;116;Spirits;416
+2022-02-01;117;Z Soft Drinks  (Old Category);26
+2022-02-01;118;Z Juices, Purees and Syrups  (Old Category);2
+2022-02-01;119;Beers, lagers & Ales;169
+2022-02-01;124;Z Hot Drinks (non alcoholic) (Old Category);7
+2022-02-01;125;Z Other (dry)  (Old Category);2
+2022-02-01;126;Z Other (wet)  (Old Category);4
+2022-02-01;127;Baked Goods;570
+2022-02-01;128;Z Desserts & Confectionery (Old Category);46
+2022-02-01;129;Z Miscellaneous  (Old Category);47
+2022-02-01;130;Z Store Cupboard  (Old Category);64
+2022-02-01;131;Z Chilled Goods  (Old Category);2
+2022-02-01;132;Z Ambient Goods  (Old Category);5
+2022-02-01;133;Z Frozen Goods  (Old Category);11
+2022-02-01;135;Non Food;27
+2022-02-01;136;Baking Mixes & Ingredients;337
+2022-02-01;137;Biscuits, Crisps And Snacks;1220
+2022-02-01;138;Breakfast Cereals;172
+2022-02-01;139;Canned Products;272
+2022-02-01;140;Cocktails And Liquers;5
+2022-02-01;141;Cold Beverages;1575
+2022-02-01;142;Condiments & Pickles;596
+2022-02-01;143;Confectionary And Cakes;987
+2022-02-01;144;Deli;165
+2022-02-01;145;Desserts;1569
+2022-02-01;146;Foods Of The World;19
+2022-02-01;147;Gravy & Cooking Sauces;521
+2022-02-01;148;Herbs & Spices;342
+2022-02-01;149;Hot Beverages;451
+2022-02-01;150;Jam, Honey & Spread;61
+2022-02-01;151;Pies, Sausage Rolls & Savouries;135
+2022-02-01;152;Prepared Foods/Meals;1967
+2022-02-01;153;Salad;233
+2022-02-01;154;Soup;47
+2022-02-01;155;Sugar & Sweeteners;324
+2022-02-01;156;Plant Based Products;189
+2022-03-01;101;Fish & Seafoods;373
+2022-03-01;102;Meat & Poultry;531
+2022-03-01;103;Vegetables;1036
+2022-03-01;104;Z Herbs (Old Category);4
+2022-03-01;105;Nuts & Seeds;13
+2022-03-01;106;Z Spices  (Old Category);2
+2022-03-01;107;Dairy & Eggs;750
+2022-03-01;108;Fruits;410
+2022-03-01;109;Grains, Rice, Pasta & Noodles;172
+2022-03-01;110;Oils, Vinegars & Flavourings;89
+2022-03-01;111;Z Additives  (Old Category);1
+2022-03-01;112;Flowers;2
+2022-03-01;113;Fungi;46
+2022-03-01;115;Champagnes & Wines;14
+2022-03-01;116;Spirits;56
+2022-03-01;118;Z Juices, Purees and Syrups  (Old Category);1
+2022-03-01;119;Beers, lagers & Ales;13
+2022-03-01;125;Z Other (dry)  (Old Category);5
+2022-03-01;126;Z Other (wet)  (Old Category);3
+2022-03-01;127;Baked Goods;286
+2022-03-01;128;Z Desserts & Confectionery (Old Category);4
+2022-03-01;129;Z Miscellaneous  (Old Category);15
+2022-03-01;130;Z Store Cupboard  (Old Category);3
+2022-03-01;132;Z Ambient Goods  (Old Category);1
+2022-03-01;133;Z Frozen Goods  (Old Category);7
+2022-03-01;135;Non Food;24
+2022-03-01;136;Baking Mixes & Ingredients;303
+2022-03-01;137;Biscuits, Crisps And Snacks;223
+2022-03-01;138;Breakfast Cereals;47
+2022-03-01;139;Canned Products;127
+2022-03-01;140;Cocktails And Liquers;33
+2022-03-01;141;Cold Beverages;334
+2022-03-01;142;Condiments & Pickles;372
+2022-03-01;143;Confectionary And Cakes;308
+2022-03-01;144;Deli;60
+2022-03-01;145;Desserts;306
+2022-03-01;146;Foods Of The World;83
+2022-03-01;147;Gravy & Cooking Sauces;319
+2022-03-01;148;Herbs & Spices;448
+2022-03-01;149;Hot Beverages;119
+2022-03-01;150;Jam, Honey & Spread;22
+2022-03-01;151;Pies, Sausage Rolls & Savouries;53
+2022-03-01;152;Prepared Foods/Meals;692
+2022-03-01;153;Salad;116
+2022-03-01;154;Soup;2
+2022-03-01;155;Sugar & Sweeteners;114
+2022-03-01;156;Plant Based Products;76
+2022-04-01;101;Fish & Seafoods;185
+2022-04-01;102;Meat & Poultry;918
+2022-04-01;103;Vegetables;488
+2022-04-01;105;Nuts & Seeds;13
+2022-04-01;106;Z Spices  (Old Category);1
+2022-04-01;107;Dairy & Eggs;379
+2022-04-01;108;Fruits;214
+2022-04-01;109;Grains, Rice, Pasta & Noodles;120
+2022-04-01;110;Oils, Vinegars & Flavourings;116
+2022-04-01;112;Flowers;4
+2022-04-01;113;Fungi;21
+2022-04-01;114;Z Beverages  (Old Category);1
+2022-04-01;115;Champagnes & Wines;33
+2022-04-01;116;Spirits;34
+2022-04-01;119;Beers, lagers & Ales;44
+2022-04-01;120;Z Liqueurs  (Old Category);1
+2022-04-01;127;Baked Goods;568
+2022-04-01;129;Z Miscellaneous  (Old Category);2
+2022-04-01;130;Z Store Cupboard  (Old Category);1
+2022-04-01;131;Z Chilled Goods  (Old Category);1
+2022-04-01;133;Z Frozen Goods  (Old Category);2
+2022-04-01;135;Non Food;71
+2022-04-01;136;Baking Mixes & Ingredients;277
+2022-04-01;137;Biscuits, Crisps And Snacks;256
+2022-04-01;138;Breakfast Cereals;47
+2022-04-01;139;Canned Products;62
+2022-04-01;140;Cocktails And Liquers;5
+2022-04-01;141;Cold Beverages;296
+2022-04-01;142;Condiments & Pickles;189
+2022-04-01;143;Confectionary And Cakes;124
+2022-04-01;144;Deli;176
+2022-04-01;145;Desserts;148
+2022-04-01;146;Foods Of The World;64
+2022-04-01;147;Gravy & Cooking Sauces;145
+2022-04-01;148;Herbs & Spices;171
+2022-04-01;149;Hot Beverages;74
+2022-04-01;150;Jam, Honey & Spread;66
+2022-04-01;151;Pies, Sausage Rolls & Savouries;3
+2022-04-01;152;Prepared Foods/Meals;496
+2022-04-01;153;Salad;89
+2022-04-01;154;Soup;23
+2022-04-01;155;Sugar & Sweeteners;63
+2022-04-01;156;Plant Based Products;45
+2022-05-01;101;Fish & Seafoods;164
+2022-05-01;102;Meat & Poultry;144
+2022-05-01;103;Vegetables;489
+2022-05-01;104;Z Herbs (Old Category);1
+2022-05-01;105;Nuts & Seeds;7
+2022-05-01;106;Z Spices  (Old Category);3
+2022-05-01;107;Dairy & Eggs;130
+2022-05-01;108;Fruits;86
+2022-05-01;109;Grains, Rice, Pasta & Noodles;72
+2022-05-01;110;Oils, Vinegars & Flavourings;135
+2022-05-01;112;Flowers;16
+2022-05-01;113;Fungi;4
+2022-05-01;114;Z Beverages  (Old Category);1
+2022-05-01;115;Champagnes & Wines;19
+2022-05-01;118;Z Juices, Purees and Syrups  (Old Category);1
+2022-05-01;119;Beers, lagers & Ales;3
+2022-05-01;127;Baked Goods;421
+2022-05-01;128;Z Desserts & Confectionery (Old Category);1
+2022-05-01;129;Z Miscellaneous  (Old Category);2
+2022-05-01;133;Z Frozen Goods  (Old Category);2
+2022-05-01;135;Non Food;134
+2022-05-01;136;Baking Mixes & Ingredients;108
+2022-05-01;137;Biscuits, Crisps And Snacks;47
+2022-05-01;138;Breakfast Cereals;6
+2022-05-01;139;Canned Products;36
+2022-05-01;141;Cold Beverages;39
+2022-05-01;142;Condiments & Pickles;103
+2022-05-01;143;Confectionary And Cakes;35
+2022-05-01;144;Deli;28
+2022-05-01;145;Desserts;24
+2022-05-01;146;Foods Of The World;43
+2022-05-01;147;Gravy & Cooking Sauces;119
+2022-05-01;148;Herbs & Spices;109
+2022-05-01;149;Hot Beverages;31
+2022-05-01;150;Jam, Honey & Spread;17
+2022-05-01;151;Pies, Sausage Rolls & Savouries;10
+2022-05-01;152;Prepared Foods/Meals;31
+2022-05-01;153;Salad;1
+2022-05-01;154;Soup;2
+2022-05-01;155;Sugar & Sweeteners;26
+2022-05-01;156;Plant Based Products;23

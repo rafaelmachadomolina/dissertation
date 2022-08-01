@@ -1,0 +1,100 @@
+cutoff_date;top;month_axis;qnt_ingredients;colour
+2021-01-01;Meat & Poultry;Jan-21;219;#f0d06b
+2021-01-01;Other;Jan-21;1718;#888888
+2021-01-01;Vegetables;Jan-21;227;#bf2742
+2021-02-01;Cold Beverages;Feb-21;2;#501e31
+2021-02-01;Desserts;Feb-21;1;#577c80
+2021-02-01;Meat & Poultry;Feb-21;164;#f0d06b
+2021-02-01;Other;Feb-21;2156;#888888
+2021-02-01;Prepared Foods/Meals;Feb-21;121;#d95a40
+2021-02-01;Vegetables;Feb-21;222;#bf2742
+2021-03-01;Cold Beverages;Mar-21;72;#501e31
+2021-03-01;Desserts;Mar-21;66;#577c80
+2021-03-01;Meat & Poultry;Mar-21;325;#f0d06b
+2021-03-01;Other;Mar-21;3827;#888888
+2021-03-01;Prepared Foods/Meals;Mar-21;1047;#d95a40
+2021-03-01;Vegetables;Mar-21;619;#bf2742
+2021-04-01;Cold Beverages;Apr-21;67;#501e31
+2021-04-01;Desserts;Apr-21;152;#577c80
+2021-04-01;Meat & Poultry;Apr-21;380;#f0d06b
+2021-04-01;Other;Apr-21;2512;#888888
+2021-04-01;Prepared Foods/Meals;Apr-21;190;#d95a40
+2021-04-01;Vegetables;Apr-21;327;#bf2742
+2021-05-01;Cold Beverages;May-21;1452;#501e31
+2021-05-01;Desserts;May-21;1292;#577c80
+2021-05-01;Meat & Poultry;May-21;1409;#f0d06b
+2021-05-01;Other;May-21;10014;#888888
+2021-05-01;Prepared Foods/Meals;May-21;1317;#d95a40
+2021-05-01;Vegetables;May-21;1221;#bf2742
+2021-06-01;Cold Beverages;Jun-21;52;#501e31
+2021-06-01;Desserts;Jun-21;28;#577c80
+2021-06-01;Meat & Poultry;Jun-21;76;#f0d06b
+2021-06-01;Other;Jun-21;574;#888888
+2021-06-01;Prepared Foods/Meals;Jun-21;79;#d95a40
+2021-06-01;Vegetables;Jun-21;74;#bf2742
+2021-07-01;Cold Beverages;Jul-21;805;#501e31
+2021-07-01;Desserts;Jul-21;269;#577c80
+2021-07-01;Meat & Poultry;Jul-21;1114;#f0d06b
+2021-07-01;Other;Jul-21;3182;#888888
+2021-07-01;Prepared Foods/Meals;Jul-21;45;#d95a40
+2021-07-01;Vegetables;Jul-21;199;#bf2742
+2021-08-01;Cold Beverages;Aug-21;936;#501e31
+2021-08-01;Desserts;Aug-21;1308;#577c80
+2021-08-01;Meat & Poultry;Aug-21;3009;#f0d06b
+2021-08-01;Other;Aug-21;10157;#888888
+2021-08-01;Prepared Foods/Meals;Aug-21;1407;#d95a40
+2021-08-01;Vegetables;Aug-21;1796;#bf2742
+2021-09-01;Cold Beverages;Sep-21;3469;#501e31
+2021-09-01;Desserts;Sep-21;3300;#577c80
+2021-09-01;Meat & Poultry;Sep-21;3274;#f0d06b
+2021-09-01;Other;Sep-21;24686;#888888
+2021-09-01;Prepared Foods/Meals;Sep-21;4812;#d95a40
+2021-09-01;Vegetables;Sep-21;3138;#bf2742
+2021-10-01;Cold Beverages;Oct-21;5125;#501e31
+2021-10-01;Desserts;Oct-21;4597;#577c80
+2021-10-01;Meat & Poultry;Oct-21;5637;#f0d06b
+2021-10-01;Other;Oct-21;32638;#888888
+2021-10-01;Prepared Foods/Meals;Oct-21;6165;#d95a40
+2021-10-01;Vegetables;Oct-21;3677;#bf2742
+2021-11-01;Cold Beverages;Nov-21;24;#501e31
+2021-11-01;Desserts;Nov-21;56;#577c80
+2021-11-01;Meat & Poultry;Nov-21;140;#f0d06b
+2021-11-01;Other;Nov-21;763;#888888
+2021-11-01;Prepared Foods/Meals;Nov-21;113;#d95a40
+2021-11-01;Vegetables;Nov-21;299;#bf2742
+2021-12-01;Cold Beverages;Dec-21;18;#501e31
+2021-12-01;Desserts;Dec-21;90;#577c80
+2021-12-01;Meat & Poultry;Dec-21;141;#f0d06b
+2021-12-01;Other;Dec-21;1453;#888888
+2021-12-01;Prepared Foods/Meals;Dec-21;588;#d95a40
+2021-12-01;Vegetables;Dec-21;251;#bf2742
+2022-01-01;Cold Beverages;Jan-22;101;#501e31
+2022-01-01;Desserts;Jan-22;146;#577c80
+2022-01-01;Meat & Poultry;Jan-22;410;#f0d06b
+2022-01-01;Other;Jan-22;2309;#888888
+2022-01-01;Prepared Foods/Meals;Jan-22;220;#d95a40
+2022-01-01;Vegetables;Jan-22;341;#bf2742
+2022-02-01;Cold Beverages;Feb-22;1575;#501e31
+2022-02-01;Desserts;Feb-22;1569;#577c80
+2022-02-01;Meat & Poultry;Feb-22;1407;#f0d06b
+2022-02-01;Other;Feb-22;9712;#888888
+2022-02-01;Prepared Foods/Meals;Feb-22;1967;#d95a40
+2022-02-01;Vegetables;Feb-22;1150;#bf2742
+2022-03-01;Cold Beverages;Mar-22;334;#501e31
+2022-03-01;Desserts;Mar-22;306;#577c80
+2022-03-01;Meat & Poultry;Mar-22;531;#f0d06b
+2022-03-01;Other;Mar-22;5119;#888888
+2022-03-01;Prepared Foods/Meals;Mar-22;692;#d95a40
+2022-03-01;Vegetables;Mar-22;1036;#bf2742
+2022-04-01;Cold Beverages;Apr-22;296;#501e31
+2022-04-01;Desserts;Apr-22;148;#577c80
+2022-04-01;Meat & Poultry;Apr-22;918;#f0d06b
+2022-04-01;Other;Apr-22;3690;#888888
+2022-04-01;Prepared Foods/Meals;Apr-22;496;#d95a40
+2022-04-01;Vegetables;Apr-22;488;#bf2742
+2022-05-01;Cold Beverages;May-22;39;#501e31
+2022-05-01;Desserts;May-22;24;#577c80
+2022-05-01;Meat & Poultry;May-22;144;#f0d06b
+2022-05-01;Other;May-22;1946;#888888
+2022-05-01;Prepared Foods/Meals;May-22;31;#d95a40
+2022-05-01;Vegetables;May-22;489;#bf2742

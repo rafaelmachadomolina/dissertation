@@ -1,0 +1,204 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+        #loadingBar {
+            position:absolute;
+            top:0px;
+            left:0px;
+            width: 100%;
+            height: 100%;
+            background-color:rgba(200,200,200,0.8);
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -ms-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            opacity:1;
+        }
+
+        #bar {
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:20px;
+            height:20px;
+            margin:auto auto auto auto;
+            border-radius:11px;
+            border:2px solid rgba(30,30,30,0.05);
+            background: rgb(0, 173, 246); /* Old browsers */
+            box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+        }
+
+        #border {
+            position:absolute;
+            top:10px;
+            left:10px;
+            width:500px;
+            height:23px;
+            margin:auto auto auto auto;
+            box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+            border-radius:10px;
+        }
+
+        #text {
+            position:absolute;
+            top:8px;
+            left:530px;
+            width:30px;
+            height:50px;
+            margin:auto auto auto auto;
+            font-size:22px;
+            color: #000000;
+        }
+
+        div.outerBorder {
+            position:relative;
+            top:400px;
+            width:600px;
+            height:44px;
+            margin:auto auto auto auto;
+            border:8px solid rgba(0,0,0,0.1);
+            background: rgb(252,252,252); /* Old browsers */
+            background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+            background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+            border-radius:72px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+<div id="loadingBar">
+    <div class="outerBorder">
+        <div id="text">0%</div>
+        <div id="border">
+            <div id="bar"></div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#8fb05c", "id": "vegetables", "label": "vegetables", "shape": "dot", "size": 11}, {"color": "#97c3fc", "id": "canned-vegetables", "label": "canned-vegetables", "shape": "dot", "size": 5}, {"color": "#97c3fc", "id": "dried-vegetables", "label": "dried-vegetables", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "fresh-vegetables", "label": "fresh-vegetables", "shape": "dot", "size": 8}, {"color": "#97c3fc", "id": "frozen-vegetables", "label": "frozen-vegetables", "shape": "dot", "size": 5}, {"color": "#ed7d31", "id": "canned-artichokes", "label": "canned-artichokes", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "canned-asparagus", "label": "canned-asparagus", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-beet", "label": "canned-beet", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-brussels-sprouts", "label": "canned-brussels-sprouts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-cabbage", "label": "canned-cabbage", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-carrots", "label": "canned-carrots", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-celery", "label": "canned-celery", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-chards", "label": "canned-chards", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-corn", "label": "canned-corn", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-hearts-of-palm", "label": "canned-hearts-of-palm", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-leeks", "label": "canned-leeks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-peppers", "label": "canned-peppers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-potatoes", "label": "canned-potatoes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-salsifis", "label": "canned-salsifis", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-spinachs", "label": "canned-spinachs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-sweet-corn", "label": "canned-sweet-corn", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "vegetable-pickles", "label": "vegetable-pickles", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "dried-tomatoes", "label": "dried-tomatoes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "aubergines", "label": "aubergines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "beet", "label": "beet", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "broad-beans", "label": "broad-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "broccoli", "label": "broccoli", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "brussels-sprouts", "label": "brussels-sprouts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "carrots", "label": "carrots", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cucumbers", "label": "cucumbers", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "garlics", "label": "garlics", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "green-beans", "label": "green-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "green-pigeon-peas", "label": "green-pigeon-peas", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "leaf-vegetables", "label": "leaf-vegetables", "shape": "dot", "size": 3}, {"color": "#97c3fc", "id": "onions", "label": "onions", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "potatoes", "label": "potatoes", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "pumpkins", "label": "pumpkins", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "radishes", "label": "radishes", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "sweet-peppers", "label": "sweet-peppers", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "tomatoes-and-tomato-products", "label": "tomatoes-and-tomato-products", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "turnip", "label": "turnip", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "vegetable-rods", "label": "vegetable-rods", "shape": "dot", "size": 3}, {"color": "#ed7d31", "id": "zucchini", "label": "zucchini", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-artichoke", "label": "frozen-artichoke", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "frozen-asparagus", "label": "frozen-asparagus", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-aubergines", "label": "frozen-aubergines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-broccoli-florets", "label": "frozen-broccoli-florets", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-brussels-sprouts", "label": "frozen-brussels-sprouts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-butter-beans", "label": "frozen-butter-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-cardoons", "label": "frozen-cardoons", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "frozen-carrots", "label": "frozen-carrots", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "frozen-chards", "label": "frozen-chards", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-chopped-garlic", "label": "frozen-chopped-garlic", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-chopped-onions", "label": "frozen-chopped-onions", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-fresh-broad-beans", "label": "frozen-fresh-broad-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-green-beans", "label": "frozen-green-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-green-garlic", "label": "frozen-green-garlic", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-green-peas", "label": "frozen-green-peas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-leeks", "label": "frozen-leeks", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "frozen-peppers", "label": "frozen-peppers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-potatoes", "label": "frozen-potatoes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-pumpkins", "label": "frozen-pumpkins", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-red-cabbage", "label": "frozen-red-cabbage", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-salsify", "label": "frozen-salsify", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-turnips", "label": "frozen-turnips", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-zucchini", "label": "frozen-zucchini", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-green-asparagus", "label": "canned-green-asparagus", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-white-asparagus", "label": "canned-white-asparagus", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pickled-aubergines", "label": "pickled-aubergines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pickled-beets", "label": "pickled-beets", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pickled-carrots", "label": "pickled-carrots", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "pickled-cucumbers", "label": "pickled-cucumbers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pickled-garlic", "label": "pickled-garlic", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pickled-onions", "label": "pickled-onions", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pickled-peppers", "label": "pickled-peppers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "gherkins", "label": "gherkins", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-tomatoes-in-oil", "label": "dried-tomatoes-in-oil", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "natural-dried-tomatoes", "label": "natural-dried-tomatoes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "black-garlic", "label": "black-garlic", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "green-garlic", "label": "green-garlic", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "white-garlic", "label": "white-garlic", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "broad-green-beans", "label": "broad-green-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "flat-green-beans", "label": "flat-green-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cabbage", "label": "cabbage", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cauliflower", "label": "cauliflower", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "endives", "label": "endives", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "garden-cress", "label": "garden-cress", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "red-cabbage", "label": "red-cabbage", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "rocket", "label": "rocket", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "romanesco", "label": "romanesco", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "spinachs", "label": "spinachs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "watercress", "label": "watercress", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "golden-onion", "label": "golden-onion", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "onion-sprouts", "label": "onion-sprouts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "red-onion", "label": "red-onion", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "scallions", "label": "scallions", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "shallots", "label": "shallots", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "spring-onion", "label": "spring-onion", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "white-onion", "label": "white-onion", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "agata-potatoes", "label": "agata-potatoes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "charlotte-potatoes", "label": "charlotte-potatoes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "sweet-potatoes", "label": "sweet-potatoes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "butternut-squashes", "label": "butternut-squashes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "spaghetti-squashes", "label": "spaghetti-squashes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "daikon-radishes", "label": "daikon-radishes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "red-radishes", "label": "red-radishes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "green-bell-peppers", "label": "green-bell-peppers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "red-bell-peppers", "label": "red-bell-peppers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "yellow-bell-peppers", "label": "yellow-bell-peppers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "strained-tomatoes", "label": "strained-tomatoes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "tomato-pastes", "label": "tomato-pastes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "tomato-purees", "label": "tomato-purees", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "tomatoes", "label": "tomatoes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "artichoke", "label": "artichoke", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "asparagus", "label": "asparagus", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "cardoons", "label": "cardoons", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "celery", "label": "celery", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fennel-bulbs", "label": "fennel-bulbs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "leeks", "label": "leeks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "rhubarbs", "label": "rhubarbs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cherry-tomatoes", "label": "cherry-tomatoes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pumpkin-tomatoes", "label": "pumpkin-tomatoes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "tomatoe", "label": "tomatoe", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "green-asparagus", "label": "green-asparagus", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "miniature-asparagus", "label": "miniature-asparagus", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "purple-asparagus", "label": "purple-asparagus", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "white-asparagus", "label": "white-asparagus", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "wild-asparagus", "label": "wild-asparagus", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-green-asparagus", "label": "frozen-green-asparagus", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-white-asparagus", "label": "frozen-white-asparagus", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-baby-carrots", "label": "frozen-baby-carrots", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-chopped-carrots", "label": "frozen-chopped-carrots", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-chard-leaves", "label": "frozen-chard-leaves", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-chopped-chards", "label": "frozen-chopped-chards", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-green-peppers", "label": "frozen-green-peppers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-red-peppers", "label": "frozen-red-peppers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-yellow-peppers", "label": "frozen-yellow-peppers", "shape": "dot", "size": 1}]);
+        edges = new vis.DataSet([{"from": "vegetables", "label": 1, "to": "canned-vegetables", "weight": 1}, {"from": "vegetables", "label": 1, "to": "dried-vegetables", "weight": 1}, {"from": "vegetables", "label": 1, "to": "fresh-vegetables", "weight": 1}, {"from": "vegetables", "label": 1, "to": "frozen-vegetables", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "canned-artichokes", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "canned-asparagus", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "canned-beet", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "canned-brussels-sprouts", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "canned-cabbage", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "canned-carrots", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "canned-celery", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "canned-chards", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "canned-corn", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "canned-hearts-of-palm", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "canned-leeks", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "canned-peppers", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "canned-potatoes", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "canned-salsifis", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "canned-spinachs", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "canned-sweet-corn", "weight": 1}, {"from": "canned-vegetables", "label": 1, "to": "vegetable-pickles", "weight": 1}, {"from": "dried-vegetables", "label": 1, "to": "dried-tomatoes", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "aubergines", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "beet", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "broad-beans", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "broccoli", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "brussels-sprouts", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "carrots", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "cucumbers", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "garlics", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "green-beans", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "green-pigeon-peas", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "leaf-vegetables", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "onions", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "potatoes", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "pumpkins", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "radishes", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "sweet-peppers", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "tomatoes-and-tomato-products", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "turnip", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "vegetable-rods", "weight": 1}, {"from": "fresh-vegetables", "label": 1, "to": "zucchini", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-artichoke", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-asparagus", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-aubergines", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-broccoli-florets", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-brussels-sprouts", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-butter-beans", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-cardoons", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-carrots", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-chards", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-chopped-garlic", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-chopped-onions", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-fresh-broad-beans", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-green-beans", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-green-garlic", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-green-peas", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-leeks", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-peppers", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-potatoes", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-pumpkins", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-red-cabbage", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-salsify", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-turnips", "weight": 1}, {"from": "frozen-vegetables", "label": 1, "to": "frozen-zucchini", "weight": 1}, {"from": "canned-asparagus", "label": 1, "to": "canned-green-asparagus", "weight": 1}, {"from": "canned-asparagus", "label": 1, "to": "canned-white-asparagus", "weight": 1}, {"from": "vegetable-pickles", "label": 1, "to": "pickled-aubergines", "weight": 1}, {"from": "vegetable-pickles", "label": 1, "to": "pickled-beets", "weight": 1}, {"from": "vegetable-pickles", "label": 1, "to": "pickled-carrots", "weight": 1}, {"from": "vegetable-pickles", "label": 1, "to": "pickled-cucumbers", "weight": 1}, {"from": "vegetable-pickles", "label": 1, "to": "pickled-garlic", "weight": 1}, {"from": "vegetable-pickles", "label": 1, "to": "pickled-onions", "weight": 1}, {"from": "vegetable-pickles", "label": 1, "to": "pickled-peppers", "weight": 1}, {"from": "pickled-cucumbers", "label": 1, "to": "gherkins", "weight": 1}, {"from": "dried-tomatoes", "label": 1, "to": "dried-tomatoes-in-oil", "weight": 1}, {"from": "dried-tomatoes", "label": 1, "to": "natural-dried-tomatoes", "weight": 1}, {"from": "garlics", "label": 1, "to": "black-garlic", "weight": 1}, {"from": "garlics", "label": 1, "to": "green-garlic", "weight": 1}, {"from": "garlics", "label": 1, "to": "white-garlic", "weight": 1}, {"from": "green-beans", "label": 1, "to": "broad-green-beans", "weight": 1}, {"from": "green-beans", "label": 1, "to": "flat-green-beans", "weight": 1}, {"from": "leaf-vegetables", "label": 1, "to": "cabbage", "weight": 1}, {"from": "leaf-vegetables", "label": 1, "to": "cauliflower", "weight": 1}, {"from": "leaf-vegetables", "label": 1, "to": "endives", "weight": 1}, {"from": "leaf-vegetables", "label": 1, "to": "garden-cress", "weight": 1}, {"from": "leaf-vegetables", "label": 1, "to": "red-cabbage", "weight": 1}, {"from": "leaf-vegetables", "label": 1, "to": "rocket", "weight": 1}, {"from": "leaf-vegetables", "label": 1, "to": "romanesco", "weight": 1}, {"from": "leaf-vegetables", "label": 1, "to": "spinachs", "weight": 1}, {"from": "leaf-vegetables", "label": 1, "to": "watercress", "weight": 1}, {"from": "onions", "label": 1, "to": "golden-onion", "weight": 1}, {"from": "onions", "label": 1, "to": "onion-sprouts", "weight": 1}, {"from": "onions", "label": 1, "to": "red-onion", "weight": 1}, {"from": "onions", "label": 1, "to": "scallions", "weight": 1}, {"from": "onions", "label": 1, "to": "shallots", "weight": 1}, {"from": "onions", "label": 1, "to": "spring-onion", "weight": 1}, {"from": "onions", "label": 1, "to": "white-onion", "weight": 1}, {"from": "potatoes", "label": 1, "to": "agata-potatoes", "weight": 1}, {"from": "potatoes", "label": 1, "to": "charlotte-potatoes", "weight": 1}, {"from": "potatoes", "label": 1, "to": "sweet-potatoes", "weight": 1}, {"from": "pumpkins", "label": 1, "to": "butternut-squashes", "weight": 1}, {"from": "pumpkins", "label": 1, "to": "spaghetti-squashes", "weight": 1}, {"from": "radishes", "label": 1, "to": "daikon-radishes", "weight": 1}, {"from": "radishes", "label": 1, "to": "red-radishes", "weight": 1}, {"from": "sweet-peppers", "label": 1, "to": "green-bell-peppers", "weight": 1}, {"from": "sweet-peppers", "label": 1, "to": "red-bell-peppers", "weight": 1}, {"from": "sweet-peppers", "label": 1, "to": "yellow-bell-peppers", "weight": 1}, {"from": "tomatoes-and-tomato-products", "label": 1, "to": "strained-tomatoes", "weight": 1}, {"from": "tomatoes-and-tomato-products", "label": 1, "to": "tomato-pastes", "weight": 1}, {"from": "tomatoes-and-tomato-products", "label": 1, "to": "tomato-purees", "weight": 1}, {"from": "tomatoes-and-tomato-products", "label": 1, "to": "tomatoes", "weight": 1}, {"from": "vegetable-rods", "label": 1, "to": "artichoke", "weight": 1}, {"from": "vegetable-rods", "label": 1, "to": "asparagus", "weight": 1}, {"from": "vegetable-rods", "label": 1, "to": "cardoons", "weight": 1}, {"from": "vegetable-rods", "label": 1, "to": "celery", "weight": 1}, {"from": "vegetable-rods", "label": 1, "to": "fennel-bulbs", "weight": 1}, {"from": "vegetable-rods", "label": 1, "to": "leeks", "weight": 1}, {"from": "vegetable-rods", "label": 1, "to": "rhubarbs", "weight": 1}, {"from": "tomatoes", "label": 1, "to": "cherry-tomatoes", "weight": 1}, {"from": "tomatoes", "label": 1, "to": "pumpkin-tomatoes", "weight": 1}, {"from": "tomatoes", "label": 1, "to": "tomatoe", "weight": 1}, {"from": "asparagus", "label": 1, "to": "green-asparagus", "weight": 1}, {"from": "asparagus", "label": 1, "to": "miniature-asparagus", "weight": 1}, {"from": "asparagus", "label": 1, "to": "purple-asparagus", "weight": 1}, {"from": "asparagus", "label": 1, "to": "white-asparagus", "weight": 1}, {"from": "asparagus", "label": 1, "to": "wild-asparagus", "weight": 1}, {"from": "frozen-asparagus", "label": 1, "to": "frozen-green-asparagus", "weight": 1}, {"from": "frozen-asparagus", "label": 1, "to": "frozen-white-asparagus", "weight": 1}, {"from": "frozen-carrots", "label": 1, "to": "frozen-baby-carrots", "weight": 1}, {"from": "frozen-carrots", "label": 1, "to": "frozen-chopped-carrots", "weight": 1}, {"from": "frozen-chards", "label": 1, "to": "frozen-chard-leaves", "weight": 1}, {"from": "frozen-chards", "label": 1, "to": "frozen-chopped-chards", "weight": 1}, {"from": "frozen-peppers", "label": 1, "to": "frozen-green-peppers", "weight": 1}, {"from": "frozen-peppers", "label": 1, "to": "frozen-red-peppers", "weight": 1}, {"from": "frozen-peppers", "label": 1, "to": "frozen-yellow-peppers", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+        network.on("stabilizationProgress", function(params) {
+      		document.getElementById('loadingBar').removeAttribute("style");
+	        var maxWidth = 496;
+	        var minWidth = 20;
+	        var widthFactor = params.iterations/params.total;
+	        var width = Math.max(minWidth,maxWidth * widthFactor);
+
+	        document.getElementById('bar').style.width = width + 'px';
+	        document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+	    });
+	    network.once("stabilizationIterationsDone", function() {
+	        document.getElementById('text').innerHTML = '100%';
+	        document.getElementById('bar').style.width = '496px';
+	        document.getElementById('loadingBar').style.opacity = 0;
+	        // really clean the dom element
+	        setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+	    });
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

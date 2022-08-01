@@ -1,0 +1,86 @@
+//DB simplified diagram generator
+
+//Tables and references
+
+Table Ingredients {
+  id int [pk, increment]
+  business_id int
+  source_id int
+  created_by int
+  name varchar
+  created datetime
+  category_id int
+  validated_by int
+  validated datetime
+  supplier_code varchar
+  product_code varchar
+  supplier_id int
+  vat_rate_id varchar
+  country varchar
+}
+
+Table Ingredient_categories {
+  id int [pk, increment]
+  created_by int
+  updated_by int
+  name varchar
+  created datetime
+  updated datetime
+  deleted datetime
+  data_class varchar
+}
+
+Table Edibles {
+  id int [pk, increment]
+  nutrition_id int
+  discriminator varchar
+  properties longtext
+  deleted datetime
+  allergen_bytes_sequence bigint
+  inherited_allergen_bytes_sequence bigint
+  no_allergens_confirmed tinyint
+  no_allergens_confirmed_by int
+}
+
+Table Nutrition {
+  id int [pk, increment]
+  energy_id int
+  fibre_id int
+  protein_id int
+  salt_id int
+  fat_id int
+  saturated_fat_id int
+  carbohydrate_id int
+  sugar_id int
+  created_by int
+  updated_by int
+  values_per longtext
+  created datetime
+  updated datetime
+  deleted datetime
+  iron_id int
+}
+
+Table Nutrition_values {
+  id int [pk, increment]
+  created_by int
+  updated_by int
+  created datetime
+  updated datetime
+  deleted datetime
+  quantity varchar
+  unit varchar
+}
+
+// References
+Ref: Ingredients.category_id > Ingredient_categories.id
+Ref: Ingredients.id - Edibles.id
+Ref: Edibles.nutrition_id - Nutrition.id
+Ref: Nutrition.energy_id - Nutrition_values.id
+Ref: Nutrition.fibre_id - Nutrition_values.id
+Ref: Nutrition.protein_id - Nutrition_values.id
+Ref: Nutrition.salt_id - Nutrition_values.id
+Ref: Nutrition.fat_id - Nutrition_values.id
+Ref: Nutrition.saturated_fat_id - Nutrition_values.id
+Ref: Nutrition.carbohydrate_id - Nutrition_values.id
+Ref: Nutrition.sugar_id - Nutrition_values.id

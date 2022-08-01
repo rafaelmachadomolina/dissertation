@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#8fb05c", "id": "nuts-seeds", "label": "nuts-seeds", "shape": "dot", "size": 5}, {"color": "#97c3fc", "id": "nut-flours", "label": "nut-flours", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "nut-milks", "label": "nut-milks", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "nuts", "label": "nuts", "shape": "dot", "size": 4}, {"color": "#97c3fc", "id": "seeds", "label": "seeds", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "almond-meal", "label": "almond-meal", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "almond-milks", "label": "almond-milks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "chestnut-milks", "label": "chestnut-milks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "hazelnut-milks", "label": "hazelnut-milks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "macadamia-nut-milks", "label": "macadamia-nut-milks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "walnut-milks", "label": "walnut-milks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "almonds", "label": "almonds", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "brazil-nuts", "label": "brazil-nuts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "chestnuts", "label": "chestnuts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "hazelnuts", "label": "hazelnuts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "macadamia-nuts", "label": "macadamia-nuts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "peanuts", "label": "peanuts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pecan-nuts", "label": "pecan-nuts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pine-nuts", "label": "pine-nuts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pistachios", "label": "pistachios", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "shelled-nuts", "label": "shelled-nuts", "shape": "dot", "size": 3}, {"color": "#ed7d31", "id": "walnuts", "label": "walnuts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fenugreek-seeds", "label": "fenugreek-seeds", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mustard-seeds", "label": "mustard-seeds", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "papaver-seeds", "label": "papaver-seeds", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "sunflower-seeds", "label": "sunflower-seeds", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "shelled-almonds", "label": "shelled-almonds", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "shelled-brazil-nuts", "label": "shelled-brazil-nuts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "shelled-chestnuts", "label": "shelled-chestnuts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "shelled-hazelnuts", "label": "shelled-hazelnuts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "shelled-macadamia-nuts", "label": "shelled-macadamia-nuts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "shelled-pecan-nuts", "label": "shelled-pecan-nuts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "shelled-pine-nuts", "label": "shelled-pine-nuts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "shelled-pistachios", "label": "shelled-pistachios", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "shelled-walnuts", "label": "shelled-walnuts", "shape": "dot", "size": 1}]);
+        edges = new vis.DataSet([{"from": "nuts-seeds", "label": 1, "to": "nut-flours", "weight": 1}, {"from": "nuts-seeds", "label": 1, "to": "nut-milks", "weight": 1}, {"from": "nuts-seeds", "label": 1, "to": "nuts", "weight": 1}, {"from": "nuts-seeds", "label": 1, "to": "seeds", "weight": 1}, {"from": "nut-flours", "label": 1, "to": "almond-meal", "weight": 1}, {"from": "nut-milks", "label": 1, "to": "almond-milks", "weight": 1}, {"from": "nut-milks", "label": 1, "to": "chestnut-milks", "weight": 1}, {"from": "nut-milks", "label": 1, "to": "hazelnut-milks", "weight": 1}, {"from": "nut-milks", "label": 1, "to": "macadamia-nut-milks", "weight": 1}, {"from": "nut-milks", "label": 1, "to": "walnut-milks", "weight": 1}, {"from": "nuts", "label": 1, "to": "almonds", "weight": 1}, {"from": "nuts", "label": 1, "to": "brazil-nuts", "weight": 1}, {"from": "nuts", "label": 1, "to": "chestnuts", "weight": 1}, {"from": "nuts", "label": 1, "to": "hazelnuts", "weight": 1}, {"from": "nuts", "label": 1, "to": "macadamia-nuts", "weight": 1}, {"from": "nuts", "label": 1, "to": "peanuts", "weight": 1}, {"from": "nuts", "label": 1, "to": "pecan-nuts", "weight": 1}, {"from": "nuts", "label": 1, "to": "pine-nuts", "weight": 1}, {"from": "nuts", "label": 1, "to": "pistachios", "weight": 1}, {"from": "nuts", "label": 1, "to": "shelled-nuts", "weight": 1}, {"from": "nuts", "label": 1, "to": "walnuts", "weight": 1}, {"from": "seeds", "label": 1, "to": "fenugreek-seeds", "weight": 1}, {"from": "seeds", "label": 1, "to": "mustard-seeds", "weight": 1}, {"from": "seeds", "label": 1, "to": "papaver-seeds", "weight": 1}, {"from": "seeds", "label": 1, "to": "sunflower-seeds", "weight": 1}, {"from": "shelled-nuts", "label": 1, "to": "shelled-almonds", "weight": 1}, {"from": "shelled-nuts", "label": 1, "to": "shelled-brazil-nuts", "weight": 1}, {"from": "shelled-nuts", "label": 1, "to": "shelled-chestnuts", "weight": 1}, {"from": "shelled-nuts", "label": 1, "to": "shelled-hazelnuts", "weight": 1}, {"from": "shelled-nuts", "label": 1, "to": "shelled-macadamia-nuts", "weight": 1}, {"from": "shelled-nuts", "label": 1, "to": "shelled-pecan-nuts", "weight": 1}, {"from": "shelled-nuts", "label": 1, "to": "shelled-pine-nuts", "weight": 1}, {"from": "shelled-nuts", "label": 1, "to": "shelled-pistachios", "weight": 1}, {"from": "shelled-nuts", "label": 1, "to": "shelled-walnuts", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

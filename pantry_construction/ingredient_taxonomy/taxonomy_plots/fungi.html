@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#8fb05c", "id": "fungi", "label": "fungi", "shape": "dot", "size": 7}, {"color": "#97c3fc", "id": "canned-mushrooms", "label": "canned-mushrooms", "shape": "dot", "size": 3}, {"color": "#97c3fc", "id": "dried-mushrooms", "label": "dried-mushrooms", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "fresh-mushrooms", "label": "fresh-mushrooms", "shape": "dot", "size": 5}, {"color": "#97c3fc", "id": "frozen-mushrooms", "label": "frozen-mushrooms", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "canned-champignon-mushrooms", "label": "canned-champignon-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-chanterelles", "label": "canned-chanterelles", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-hygrophorus-latitabundus", "label": "canned-hygrophorus-latitabundus", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-king-trumpet-mushrooms", "label": "canned-king-trumpet-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-nameko-mushrooms", "label": "canned-nameko-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-oyster-mushrooms", "label": "canned-oyster-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-paddy-straw-mushrooms", "label": "canned-paddy-straw-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-porcini-mushrooms", "label": "canned-porcini-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-red-pine-mushrooms", "label": "canned-red-pine-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-shiitake-mushrooms", "label": "canned-shiitake-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-truffles", "label": "canned-truffles", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-horn-of-plenty-mushrooms", "label": "dried-horn-of-plenty-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-jew-s-ear-mushrooms", "label": "dried-jew-s-ear-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-oyster-mushrooms", "label": "dried-oyster-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-porcini-mushrooms", "label": "dried-porcini-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-scotch-bonnet-mushrooms", "label": "dried-scotch-bonnet-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-shiitake-mushrooms", "label": "dried-shiitake-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "bloody-milk-caps", "label": "bloody-milk-caps", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "champignon-mushrooms", "label": "champignon-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "chanterelles", "label": "chanterelles", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "horn-of-plenty-mushrooms", "label": "horn-of-plenty-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "hygrophorus-latitabundus", "label": "hygrophorus-latitabundus", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "jew-s-ear-mushrooms", "label": "jew-s-ear-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "king-trumpet-mushrooms", "label": "king-trumpet-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mixed-mushrooms", "label": "mixed-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "morel", "label": "morel", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "nameko-mushrooms", "label": "nameko-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "oyster-mushrooms", "label": "oyster-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "paddy-straw-mushrooms", "label": "paddy-straw-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "porcini-mushrooms", "label": "porcini-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "red-pine-mushrooms", "label": "red-pine-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "scotch-bonnet-mushrooms", "label": "scotch-bonnet-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "shiitake-mushrooms", "label": "shiitake-mushrooms", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "truffles", "label": "truffles", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "frozen-champignon-mushrooms", "label": "frozen-champignon-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-chanterelle-mushrooms", "label": "frozen-chanterelle-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-oyster-mushrooms", "label": "frozen-oyster-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-porcini-mushrooms", "label": "frozen-porcini-mushrooms", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "bagnoli-truffles", "label": "bagnoli-truffles", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "black-truffles", "label": "black-truffles", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "burgundy-truffles", "label": "burgundy-truffles", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "chinese-black-truffles", "label": "chinese-black-truffles", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "summer-truffles", "label": "summer-truffles", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "white-truffles", "label": "white-truffles", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "whitish-truffles", "label": "whitish-truffles", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "winter-truffles", "label": "winter-truffles", "shape": "dot", "size": 1}]);
+        edges = new vis.DataSet([{"from": "fungi", "label": 1, "to": "canned-mushrooms", "weight": 1}, {"from": "fungi", "label": 1, "to": "dried-mushrooms", "weight": 1}, {"from": "fungi", "label": 1, "to": "fresh-mushrooms", "weight": 1}, {"from": "fungi", "label": 1, "to": "frozen-mushrooms", "weight": 1}, {"from": "canned-mushrooms", "label": 1, "to": "canned-champignon-mushrooms", "weight": 1}, {"from": "canned-mushrooms", "label": 1, "to": "canned-chanterelles", "weight": 1}, {"from": "canned-mushrooms", "label": 1, "to": "canned-hygrophorus-latitabundus", "weight": 1}, {"from": "canned-mushrooms", "label": 1, "to": "canned-king-trumpet-mushrooms", "weight": 1}, {"from": "canned-mushrooms", "label": 1, "to": "canned-nameko-mushrooms", "weight": 1}, {"from": "canned-mushrooms", "label": 1, "to": "canned-oyster-mushrooms", "weight": 1}, {"from": "canned-mushrooms", "label": 1, "to": "canned-paddy-straw-mushrooms", "weight": 1}, {"from": "canned-mushrooms", "label": 1, "to": "canned-porcini-mushrooms", "weight": 1}, {"from": "canned-mushrooms", "label": 1, "to": "canned-red-pine-mushrooms", "weight": 1}, {"from": "canned-mushrooms", "label": 1, "to": "canned-shiitake-mushrooms", "weight": 1}, {"from": "canned-mushrooms", "label": 1, "to": "canned-truffles", "weight": 1}, {"from": "dried-mushrooms", "label": 1, "to": "dried-horn-of-plenty-mushrooms", "weight": 1}, {"from": "dried-mushrooms", "label": 1, "to": "dried-jew-s-ear-mushrooms", "weight": 1}, {"from": "dried-mushrooms", "label": 1, "to": "dried-oyster-mushrooms", "weight": 1}, {"from": "dried-mushrooms", "label": 1, "to": "dried-porcini-mushrooms", "weight": 1}, {"from": "dried-mushrooms", "label": 1, "to": "dried-scotch-bonnet-mushrooms", "weight": 1}, {"from": "dried-mushrooms", "label": 1, "to": "dried-shiitake-mushrooms", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "bloody-milk-caps", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "champignon-mushrooms", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "chanterelles", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "horn-of-plenty-mushrooms", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "hygrophorus-latitabundus", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "jew-s-ear-mushrooms", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "king-trumpet-mushrooms", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "mixed-mushrooms", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "morel", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "nameko-mushrooms", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "oyster-mushrooms", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "paddy-straw-mushrooms", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "porcini-mushrooms", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "red-pine-mushrooms", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "scotch-bonnet-mushrooms", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "shiitake-mushrooms", "weight": 1}, {"from": "fresh-mushrooms", "label": 1, "to": "truffles", "weight": 1}, {"from": "frozen-mushrooms", "label": 1, "to": "frozen-champignon-mushrooms", "weight": 1}, {"from": "frozen-mushrooms", "label": 1, "to": "frozen-chanterelle-mushrooms", "weight": 1}, {"from": "frozen-mushrooms", "label": 1, "to": "frozen-oyster-mushrooms", "weight": 1}, {"from": "frozen-mushrooms", "label": 1, "to": "frozen-porcini-mushrooms", "weight": 1}, {"from": "truffles", "label": 1, "to": "bagnoli-truffles", "weight": 1}, {"from": "truffles", "label": 1, "to": "black-truffles", "weight": 1}, {"from": "truffles", "label": 1, "to": "burgundy-truffles", "weight": 1}, {"from": "truffles", "label": 1, "to": "chinese-black-truffles", "weight": 1}, {"from": "truffles", "label": 1, "to": "summer-truffles", "weight": 1}, {"from": "truffles", "label": 1, "to": "white-truffles", "weight": 1}, {"from": "truffles", "label": 1, "to": "whitish-truffles", "weight": 1}, {"from": "truffles", "label": 1, "to": "winter-truffles", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

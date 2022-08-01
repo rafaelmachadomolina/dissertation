@@ -1,0 +1,204 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+        #loadingBar {
+            position:absolute;
+            top:0px;
+            left:0px;
+            width: 100%;
+            height: 100%;
+            background-color:rgba(200,200,200,0.8);
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -ms-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            opacity:1;
+        }
+
+        #bar {
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:20px;
+            height:20px;
+            margin:auto auto auto auto;
+            border-radius:11px;
+            border:2px solid rgba(30,30,30,0.05);
+            background: rgb(0, 173, 246); /* Old browsers */
+            box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+        }
+
+        #border {
+            position:absolute;
+            top:10px;
+            left:10px;
+            width:500px;
+            height:23px;
+            margin:auto auto auto auto;
+            box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+            border-radius:10px;
+        }
+
+        #text {
+            position:absolute;
+            top:8px;
+            left:530px;
+            width:30px;
+            height:50px;
+            margin:auto auto auto auto;
+            font-size:22px;
+            color: #000000;
+        }
+
+        div.outerBorder {
+            position:relative;
+            top:400px;
+            width:600px;
+            height:44px;
+            margin:auto auto auto auto;
+            border:8px solid rgba(0,0,0,0.1);
+            background: rgb(252,252,252); /* Old browsers */
+            background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+            background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+            border-radius:72px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+<div id="loadingBar">
+    <div class="outerBorder">
+        <div id="text">0%</div>
+        <div id="border">
+            <div id="bar"></div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#8fb05c", "id": "fruits", "label": "fruits", "shape": "dot", "size": 11}, {"color": "#97c3fc", "id": "canned-fruits", "label": "canned-fruits", "shape": "dot", "size": 3}, {"color": "#97c3fc", "id": "dried-fruits", "label": "dried-fruits", "shape": "dot", "size": 4}, {"color": "#97c3fc", "id": "fresh-fruits", "label": "fresh-fruits", "shape": "dot", "size": 8}, {"color": "#97c3fc", "id": "frozen-fruits", "label": "frozen-fruits", "shape": "dot", "size": 3}, {"color": "#97c3fc", "id": "fruit-pastes", "label": "fruit-pastes", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "fruit-salads", "label": "fruit-salads", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "olives", "label": "olives", "shape": "dot", "size": 3}, {"color": "#ed7d31", "id": "canned-pineapples", "label": "canned-pineapples", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "fruits-in-syrup", "label": "fruits-in-syrup", "shape": "dot", "size": 3}, {"color": "#ed7d31", "id": "dried-apples", "label": "dried-apples", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-apricots", "label": "dried-apricots", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-bananas", "label": "dried-bananas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-bilberries", "label": "dried-bilberries", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "dried-coconut", "label": "dried-coconut", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-cranberries", "label": "dried-cranberries", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-figs", "label": "dried-figs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-goji", "label": "dried-goji", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-golden-berries", "label": "dried-golden-berries", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-mangoes", "label": "dried-mangoes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-mixed-fruits", "label": "dried-mixed-fruits", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-papayas", "label": "dried-papayas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-peaches", "label": "dried-peaches", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-pineapple", "label": "dried-pineapple", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-strawberries", "label": "dried-strawberries", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "grated-coconut", "label": "grated-coconut", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "raisins", "label": "raisins", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "apples", "label": "apples", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "apricots", "label": "apricots", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "berries", "label": "berries", "shape": "dot", "size": 3}, {"color": "#ed7d31", "id": "cherries", "label": "cherries", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "citrus", "label": "citrus", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "dates", "label": "dates", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "figs", "label": "figs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "golden-berries", "label": "golden-berries", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "grapes", "label": "grapes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "kakis", "label": "kakis", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "kiwi", "label": "kiwi", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "medlars", "label": "medlars", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "melons", "label": "melons", "shape": "dot", "size": 3}, {"color": "#97c3fc", "id": "peaches", "label": "peaches", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pears", "label": "pears", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pitayas", "label": "pitayas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "plums", "label": "plums", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pomegranates", "label": "pomegranates", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "quinces", "label": "quinces", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "tropical-fruits", "label": "tropical-fruits", "shape": "dot", "size": 3}, {"color": "#97c3fc", "id": "frozen-berries", "label": "frozen-berries", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "frozen-citrus", "label": "frozen-citrus", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-pomegranates", "label": "frozen-pomegranates", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "frozen-tropical-fruits", "label": "frozen-tropical-fruits", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "apple-pastes", "label": "apple-pastes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "guava-pastes", "label": "guava-pastes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "multifruit-pastes", "label": "multifruit-pastes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "peach-pastes", "label": "peach-pastes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "plum-pastes", "label": "plum-pastes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "quince-cheeses", "label": "quince-cheeses", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fresh-fruit-salad", "label": "fresh-fruit-salad", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fruit-salads-in-syrup", "label": "fruit-salads-in-syrup", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "black-olives", "label": "black-olives", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "green-olives", "label": "green-olives", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "apricots-in-syrup", "label": "apricots-in-syrup", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-mixed-fruit-in-syrup", "label": "canned-mixed-fruit-in-syrup", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cherries-in-syrup", "label": "cherries-in-syrup", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "grapefruits-in-syrup", "label": "grapefruits-in-syrup", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lychees-in-syrup", "label": "lychees-in-syrup", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mangoes-in-syrup", "label": "mangoes-in-syrup", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "peaches-in-syrup", "label": "peaches-in-syrup", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pears-in-syrup", "label": "pears-in-syrup", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pineapple-in-syrup", "label": "pineapple-in-syrup", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-coconut-chips", "label": "dried-coconut-chips", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "dried-coconut-flour", "label": "dried-coconut-flour", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canada-reinettes-apples", "label": "canada-reinettes-apples", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "granny-smith-apples", "label": "granny-smith-apples", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "red-delicious-apples", "label": "red-delicious-apples", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "russet-apples", "label": "russet-apples", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fuji-apples", "label": "fuji-apples", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "gala-apples", "label": "gala-apples", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "golden-delicious-apples", "label": "golden-delicious-apples", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "bilberries", "label": "bilberries", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "blackberries", "label": "blackberries", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "blackthorns", "label": "blackthorns", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "blueberries", "label": "blueberries", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cranberries", "label": "cranberries", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "elderberries", "label": "elderberries", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lingonberries", "label": "lingonberries", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "raspberries", "label": "raspberries", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "redcurrants", "label": "redcurrants", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "strawberries", "label": "strawberries", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "grapefruits", "label": "grapefruits", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lemons", "label": "lemons", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "limes", "label": "limes", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "mandarin-oranges", "label": "mandarin-oranges", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "oranges", "label": "oranges", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pomelos", "label": "pomelos", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pitted-dates", "label": "pitted-dates", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "whole-dates", "label": "whole-dates", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "black-grapes", "label": "black-grapes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "green-grapes", "label": "green-grapes", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "muskmelons", "label": "muskmelons", "shape": "dot", "size": 3}, {"color": "#ed7d31", "id": "watermelon", "label": "watermelon", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "nectarines", "label": "nectarines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "platerines", "label": "platerines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "avocados", "label": "avocados", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "bananas", "label": "bananas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "chirimuyas", "label": "chirimuyas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "coconuts", "label": "coconuts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "guavas", "label": "guavas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lychees", "label": "lychees", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mangoes", "label": "mangoes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "papayas", "label": "papayas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "passion-fruits", "label": "passion-fruits", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pineapple", "label": "pineapple", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "clementines", "label": "clementines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "tangerines", "label": "tangerines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "branco-melons", "label": "branco-melons", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canary-melons", "label": "canary-melons", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "cantaloupe-melons", "label": "cantaloupe-melons", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "galia-melons", "label": "galia-melons", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "honeydew-melons", "label": "honeydew-melons", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "piel-de-sapo-melons", "label": "piel-de-sapo-melons", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "rochet-melons", "label": "rochet-melons", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "tendral-melons", "label": "tendral-melons", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "charentais-melons", "label": "charentais-melons", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-blackberries", "label": "frozen-blackberries", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-blueberries", "label": "frozen-blueberries", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-mixed-berries", "label": "frozen-mixed-berries", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-raspberries", "label": "frozen-raspberries", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-redcurrants", "label": "frozen-redcurrants", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-strawberries", "label": "frozen-strawberries", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-avocados", "label": "frozen-avocados", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-pineapples", "label": "frozen-pineapples", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "black-chopped-olives", "label": "black-chopped-olives", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "black-pitted-olives", "label": "black-pitted-olives", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "whole-black-olives", "label": "whole-black-olives", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "green-chopped-olives", "label": "green-chopped-olives", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "green-olives-in-brine", "label": "green-olives-in-brine", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "green-pitted-olives", "label": "green-pitted-olives", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "whole-green-olives", "label": "whole-green-olives", "shape": "dot", "size": 1}]);
+        edges = new vis.DataSet([{"from": "fruits", "label": 1, "to": "canned-fruits", "weight": 1}, {"from": "fruits", "label": 1, "to": "dried-fruits", "weight": 1}, {"from": "fruits", "label": 1, "to": "fresh-fruits", "weight": 1}, {"from": "fruits", "label": 1, "to": "frozen-fruits", "weight": 1}, {"from": "fruits", "label": 1, "to": "fruit-pastes", "weight": 1}, {"from": "fruits", "label": 1, "to": "fruit-salads", "weight": 1}, {"from": "fruits", "label": 1, "to": "olives", "weight": 1}, {"from": "canned-fruits", "label": 1, "to": "canned-pineapples", "weight": 1}, {"from": "canned-fruits", "label": 1, "to": "fruits-in-syrup", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "dried-apples", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "dried-apricots", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "dried-bananas", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "dried-bilberries", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "dried-coconut", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "dried-cranberries", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "dried-figs", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "dried-goji", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "dried-golden-berries", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "dried-mangoes", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "dried-mixed-fruits", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "dried-papayas", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "dried-peaches", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "dried-pineapple", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "dried-strawberries", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "grated-coconut", "weight": 1}, {"from": "dried-fruits", "label": 1, "to": "raisins", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "apples", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "apricots", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "berries", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "cherries", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "citrus", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "dates", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "figs", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "golden-berries", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "grapes", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "kakis", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "kiwi", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "medlars", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "melons", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "peaches", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "pears", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "pitayas", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "plums", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "pomegranates", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "quinces", "weight": 1}, {"from": "fresh-fruits", "label": 1, "to": "tropical-fruits", "weight": 1}, {"from": "frozen-fruits", "label": 1, "to": "frozen-berries", "weight": 1}, {"from": "frozen-fruits", "label": 1, "to": "frozen-citrus", "weight": 1}, {"from": "frozen-fruits", "label": 1, "to": "frozen-pomegranates", "weight": 1}, {"from": "frozen-fruits", "label": 1, "to": "frozen-tropical-fruits", "weight": 1}, {"from": "fruit-pastes", "label": 1, "to": "apple-pastes", "weight": 1}, {"from": "fruit-pastes", "label": 1, "to": "guava-pastes", "weight": 1}, {"from": "fruit-pastes", "label": 1, "to": "multifruit-pastes", "weight": 1}, {"from": "fruit-pastes", "label": 1, "to": "peach-pastes", "weight": 1}, {"from": "fruit-pastes", "label": 1, "to": "plum-pastes", "weight": 1}, {"from": "fruit-pastes", "label": 1, "to": "quince-cheeses", "weight": 1}, {"from": "fruit-salads", "label": 1, "to": "fresh-fruit-salad", "weight": 1}, {"from": "fruit-salads", "label": 1, "to": "fruit-salads-in-syrup", "weight": 1}, {"from": "olives", "label": 1, "to": "black-olives", "weight": 1}, {"from": "olives", "label": 1, "to": "green-olives", "weight": 1}, {"from": "fruits-in-syrup", "label": 1, "to": "apricots-in-syrup", "weight": 1}, {"from": "fruits-in-syrup", "label": 1, "to": "canned-mixed-fruit-in-syrup", "weight": 1}, {"from": "fruits-in-syrup", "label": 1, "to": "cherries-in-syrup", "weight": 1}, {"from": "fruits-in-syrup", "label": 1, "to": "grapefruits-in-syrup", "weight": 1}, {"from": "fruits-in-syrup", "label": 1, "to": "lychees-in-syrup", "weight": 1}, {"from": "fruits-in-syrup", "label": 1, "to": "mangoes-in-syrup", "weight": 1}, {"from": "fruits-in-syrup", "label": 1, "to": "peaches-in-syrup", "weight": 1}, {"from": "fruits-in-syrup", "label": 1, "to": "pears-in-syrup", "weight": 1}, {"from": "fruits-in-syrup", "label": 1, "to": "pineapple-in-syrup", "weight": 1}, {"from": "dried-coconut", "label": 1, "to": "dried-coconut-chips", "weight": 1}, {"from": "dried-coconut", "label": 1, "to": "dried-coconut-flour", "weight": 1}, {"from": "apples", "label": 1, "to": "canada-reinettes-apples", "weight": 1}, {"from": "apples", "label": 1, "to": "granny-smith-apples", "weight": 1}, {"from": "apples", "label": 1, "to": "red-delicious-apples", "weight": 1}, {"from": "apples", "label": 1, "to": "russet-apples", "weight": 1}, {"from": "apples", "label": 1, "to": "fuji-apples", "weight": 1}, {"from": "apples", "label": 1, "to": "gala-apples", "weight": 1}, {"from": "apples", "label": 1, "to": "golden-delicious-apples", "weight": 1}, {"from": "berries", "label": 1, "to": "bilberries", "weight": 1}, {"from": "berries", "label": 1, "to": "blackberries", "weight": 1}, {"from": "berries", "label": 1, "to": "blackthorns", "weight": 1}, {"from": "berries", "label": 1, "to": "blueberries", "weight": 1}, {"from": "berries", "label": 1, "to": "cranberries", "weight": 1}, {"from": "berries", "label": 1, "to": "elderberries", "weight": 1}, {"from": "berries", "label": 1, "to": "lingonberries", "weight": 1}, {"from": "berries", "label": 1, "to": "raspberries", "weight": 1}, {"from": "berries", "label": 1, "to": "redcurrants", "weight": 1}, {"from": "berries", "label": 1, "to": "strawberries", "weight": 1}, {"from": "citrus", "label": 1, "to": "grapefruits", "weight": 1}, {"from": "citrus", "label": 1, "to": "lemons", "weight": 1}, {"from": "citrus", "label": 1, "to": "limes", "weight": 1}, {"from": "citrus", "label": 1, "to": "mandarin-oranges", "weight": 1}, {"from": "citrus", "label": 1, "to": "oranges", "weight": 1}, {"from": "citrus", "label": 1, "to": "pomelos", "weight": 1}, {"from": "dates", "label": 1, "to": "pitted-dates", "weight": 1}, {"from": "dates", "label": 1, "to": "whole-dates", "weight": 1}, {"from": "grapes", "label": 1, "to": "black-grapes", "weight": 1}, {"from": "grapes", "label": 1, "to": "green-grapes", "weight": 1}, {"from": "melons", "label": 1, "to": "muskmelons", "weight": 1}, {"from": "melons", "label": 1, "to": "watermelon", "weight": 1}, {"from": "peaches", "label": 1, "to": "nectarines", "weight": 1}, {"from": "peaches", "label": 1, "to": "platerines", "weight": 1}, {"from": "tropical-fruits", "label": 1, "to": "avocados", "weight": 1}, {"from": "tropical-fruits", "label": 1, "to": "bananas", "weight": 1}, {"from": "tropical-fruits", "label": 1, "to": "chirimuyas", "weight": 1}, {"from": "tropical-fruits", "label": 1, "to": "coconuts", "weight": 1}, {"from": "tropical-fruits", "label": 1, "to": "guavas", "weight": 1}, {"from": "tropical-fruits", "label": 1, "to": "lychees", "weight": 1}, {"from": "tropical-fruits", "label": 1, "to": "mangoes", "weight": 1}, {"from": "tropical-fruits", "label": 1, "to": "papayas", "weight": 1}, {"from": "tropical-fruits", "label": 1, "to": "passion-fruits", "weight": 1}, {"from": "tropical-fruits", "label": 1, "to": "pineapple", "weight": 1}, {"from": "mandarin-oranges", "label": 1, "to": "clementines", "weight": 1}, {"from": "mandarin-oranges", "label": 1, "to": "tangerines", "weight": 1}, {"from": "muskmelons", "label": 1, "to": "branco-melons", "weight": 1}, {"from": "muskmelons", "label": 1, "to": "canary-melons", "weight": 1}, {"from": "muskmelons", "label": 1, "to": "cantaloupe-melons", "weight": 1}, {"from": "muskmelons", "label": 1, "to": "galia-melons", "weight": 1}, {"from": "muskmelons", "label": 1, "to": "honeydew-melons", "weight": 1}, {"from": "muskmelons", "label": 1, "to": "piel-de-sapo-melons", "weight": 1}, {"from": "muskmelons", "label": 1, "to": "rochet-melons", "weight": 1}, {"from": "muskmelons", "label": 1, "to": "tendral-melons", "weight": 1}, {"from": "cantaloupe-melons", "label": 1, "to": "charentais-melons", "weight": 1}, {"from": "frozen-berries", "label": 1, "to": "frozen-blackberries", "weight": 1}, {"from": "frozen-berries", "label": 1, "to": "frozen-blueberries", "weight": 1}, {"from": "frozen-berries", "label": 1, "to": "frozen-mixed-berries", "weight": 1}, {"from": "frozen-berries", "label": 1, "to": "frozen-raspberries", "weight": 1}, {"from": "frozen-berries", "label": 1, "to": "frozen-redcurrants", "weight": 1}, {"from": "frozen-berries", "label": 1, "to": "frozen-strawberries", "weight": 1}, {"from": "frozen-tropical-fruits", "label": 1, "to": "frozen-avocados", "weight": 1}, {"from": "frozen-tropical-fruits", "label": 1, "to": "frozen-pineapples", "weight": 1}, {"from": "black-olives", "label": 1, "to": "black-chopped-olives", "weight": 1}, {"from": "black-olives", "label": 1, "to": "black-pitted-olives", "weight": 1}, {"from": "black-olives", "label": 1, "to": "whole-black-olives", "weight": 1}, {"from": "green-olives", "label": 1, "to": "green-chopped-olives", "weight": 1}, {"from": "green-olives", "label": 1, "to": "green-olives-in-brine", "weight": 1}, {"from": "green-olives", "label": 1, "to": "green-pitted-olives", "weight": 1}, {"from": "green-olives", "label": 1, "to": "whole-green-olives", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+        network.on("stabilizationProgress", function(params) {
+      		document.getElementById('loadingBar').removeAttribute("style");
+	        var maxWidth = 496;
+	        var minWidth = 20;
+	        var widthFactor = params.iterations/params.total;
+	        var width = Math.max(minWidth,maxWidth * widthFactor);
+
+	        document.getElementById('bar').style.width = width + 'px';
+	        document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+	    });
+	    network.once("stabilizationIterationsDone", function() {
+	        document.getElementById('text').innerHTML = '100%';
+	        document.getElementById('bar').style.width = '496px';
+	        document.getElementById('loadingBar').style.opacity = 0;
+	        // really clean the dom element
+	        setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+	    });
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#8fb05c", "id": "fish-seafood", "label": "fish-seafood", "shape": "dot", "size": 8}, {"color": "#97c3fc", "id": "crustaceans", "label": "crustaceans", "shape": "dot", "size": 3}, {"color": "#97c3fc", "id": "fishes", "label": "fishes", "shape": "dot", "size": 7}, {"color": "#ed7d31", "id": "jellyfish", "label": "jellyfish", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "mollusc", "label": "mollusc", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "crab", "label": "crab", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lobsters", "label": "lobsters", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "shrimps", "label": "shrimps", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "spider-crab", "label": "spider-crab", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "spiny-lobsters", "label": "spiny-lobsters", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "anchovy", "label": "anchovy", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "anglers", "label": "anglers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "bass", "label": "bass", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "breams", "label": "breams", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "cods", "label": "cods", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "herring", "label": "herring", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "mackerels", "label": "mackerels", "shape": "dot", "size": 3}, {"color": "#97c3fc", "id": "pollocks", "label": "pollocks", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "salmons", "label": "salmons", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "sardines", "label": "sardines", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "trouts", "label": "trouts", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "tunas", "label": "tunas", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "calamari", "label": "calamari", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mussels", "label": "mussels", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "octopus", "label": "octopus", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "oysters", "label": "oysters", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "scallop", "label": "scallop", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "gambas", "label": "gambas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "prawns", "label": "prawns", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "shrimp-skewers", "label": "shrimp-skewers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "jumbo-shrimps", "label": "jumbo-shrimps", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "shrimps-tails", "label": "shrimps-tails", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cod-fillets", "label": "cod-fillets", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "cod-livers", "label": "cod-livers", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-herrings", "label": "canned-herrings", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pacific-herring", "label": "pacific-herring", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pickled-herring", "label": "pickled-herring", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "smoked-herrings", "label": "smoked-herrings", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "mackerels-fillets", "label": "mackerels-fillets", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "tinned-mackerels", "label": "tinned-mackerels", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pollock-fillets", "label": "pollock-fillets", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-salmons", "label": "canned-salmons", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "salmon-fillets", "label": "salmon-fillets", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "salmons-from-farming", "label": "salmons-from-farming", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "smoked-salmons", "label": "smoked-salmons", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "canned-sardines", "label": "canned-sardines", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "smoked-trouts", "label": "smoked-trouts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "atlantic-bluefin-tunas", "label": "atlantic-bluefin-tunas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "bigeye-tunas", "label": "bigeye-tunas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-tunas", "label": "canned-tunas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "longtail-tuna", "label": "longtail-tuna", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "smoked-tunas", "label": "smoked-tunas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "tropical-tunas", "label": "tropical-tunas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "tuna-fillets", "label": "tuna-fillets", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "whole-tunas", "label": "whole-tunas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mackerel-fillets-in-escabeche", "label": "mackerel-fillets-in-escabeche", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mackerel-fillets-in-mustard-sauce", "label": "mackerel-fillets-in-mustard-sauce", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mackerel-fillets-in-oil", "label": "mackerel-fillets-in-oil", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mackerel-fillets-in-white-wine-and-herbs", "label": "mackerel-fillets-in-white-wine-and-herbs", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mackerels-fillets-with-olives-and-lemon", "label": "mackerels-fillets-with-olives-and-lemon", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mackerels-fillets-with-tomato-and-basilisk", "label": "mackerels-fillets-with-tomato-and-basilisk", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "plain-mackerels-fillets", "label": "plain-mackerels-fillets", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "smoked-salmons-from-farming", "label": "smoked-salmons-from-farming", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "wild-smoked-salmons", "label": "wild-smoked-salmons", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "sardines-in-oil", "label": "sardines-in-oil", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "sardines-in-tomato-sauce", "label": "sardines-in-tomato-sauce", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "sardines-without-oil", "label": "sardines-without-oil", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "sardines-in-oil-and-lemon", "label": "sardines-in-oil-and-lemon", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "sardines-in-sunflower-oil", "label": "sardines-in-sunflower-oil", "shape": "dot", "size": 1}]);
+        edges = new vis.DataSet([{"from": "fish-seafood", "label": 1, "to": "crustaceans", "weight": 1}, {"from": "fish-seafood", "label": 1, "to": "fishes", "weight": 1}, {"from": "fish-seafood", "label": 1, "to": "jellyfish", "weight": 1}, {"from": "fish-seafood", "label": 1, "to": "mollusc", "weight": 1}, {"from": "crustaceans", "label": 1, "to": "crab", "weight": 1}, {"from": "crustaceans", "label": 1, "to": "lobsters", "weight": 1}, {"from": "crustaceans", "label": 1, "to": "shrimps", "weight": 1}, {"from": "crustaceans", "label": 1, "to": "spider-crab", "weight": 1}, {"from": "crustaceans", "label": 1, "to": "spiny-lobsters", "weight": 1}, {"from": "fishes", "label": 1, "to": "anchovy", "weight": 1}, {"from": "fishes", "label": 1, "to": "anglers", "weight": 1}, {"from": "fishes", "label": 1, "to": "bass", "weight": 1}, {"from": "fishes", "label": 1, "to": "breams", "weight": 1}, {"from": "fishes", "label": 1, "to": "cods", "weight": 1}, {"from": "fishes", "label": 1, "to": "herring", "weight": 1}, {"from": "fishes", "label": 1, "to": "mackerels", "weight": 1}, {"from": "fishes", "label": 1, "to": "pollocks", "weight": 1}, {"from": "fishes", "label": 1, "to": "salmons", "weight": 1}, {"from": "fishes", "label": 1, "to": "sardines", "weight": 1}, {"from": "fishes", "label": 1, "to": "trouts", "weight": 1}, {"from": "fishes", "label": 1, "to": "tunas", "weight": 1}, {"from": "mollusc", "label": 1, "to": "calamari", "weight": 1}, {"from": "mollusc", "label": 1, "to": "mussels", "weight": 1}, {"from": "mollusc", "label": 1, "to": "octopus", "weight": 1}, {"from": "mollusc", "label": 1, "to": "oysters", "weight": 1}, {"from": "mollusc", "label": 1, "to": "scallop", "weight": 1}, {"from": "shrimps", "label": 1, "to": "gambas", "weight": 1}, {"from": "shrimps", "label": 1, "to": "prawns", "weight": 1}, {"from": "shrimps", "label": 1, "to": "shrimp-skewers", "weight": 1}, {"from": "shrimps", "label": 1, "to": "jumbo-shrimps", "weight": 1}, {"from": "shrimps", "label": 1, "to": "shrimps-tails", "weight": 1}, {"from": "cods", "label": 1, "to": "cod-fillets", "weight": 1}, {"from": "cods", "label": 1, "to": "cod-livers", "weight": 1}, {"from": "herring", "label": 1, "to": "canned-herrings", "weight": 1}, {"from": "herring", "label": 1, "to": "pacific-herring", "weight": 1}, {"from": "herring", "label": 1, "to": "pickled-herring", "weight": 1}, {"from": "herring", "label": 1, "to": "smoked-herrings", "weight": 1}, {"from": "mackerels", "label": 1, "to": "mackerels-fillets", "weight": 1}, {"from": "mackerels", "label": 1, "to": "tinned-mackerels", "weight": 1}, {"from": "pollocks", "label": 1, "to": "pollock-fillets", "weight": 1}, {"from": "salmons", "label": 1, "to": "canned-salmons", "weight": 1}, {"from": "salmons", "label": 1, "to": "salmon-fillets", "weight": 1}, {"from": "salmons", "label": 1, "to": "salmons-from-farming", "weight": 1}, {"from": "salmons", "label": 1, "to": "smoked-salmons", "weight": 1}, {"from": "sardines", "label": 1, "to": "canned-sardines", "weight": 1}, {"from": "trouts", "label": 1, "to": "smoked-trouts", "weight": 1}, {"from": "tunas", "label": 1, "to": "atlantic-bluefin-tunas", "weight": 1}, {"from": "tunas", "label": 1, "to": "bigeye-tunas", "weight": 1}, {"from": "tunas", "label": 1, "to": "canned-tunas", "weight": 1}, {"from": "tunas", "label": 1, "to": "longtail-tuna", "weight": 1}, {"from": "tunas", "label": 1, "to": "smoked-tunas", "weight": 1}, {"from": "tunas", "label": 1, "to": "tropical-tunas", "weight": 1}, {"from": "tunas", "label": 1, "to": "tuna-fillets", "weight": 1}, {"from": "tunas", "label": 1, "to": "whole-tunas", "weight": 1}, {"from": "mackerels-fillets", "label": 1, "to": "mackerel-fillets-in-escabeche", "weight": 1}, {"from": "mackerels-fillets", "label": 1, "to": "mackerel-fillets-in-mustard-sauce", "weight": 1}, {"from": "mackerels-fillets", "label": 1, "to": "mackerel-fillets-in-oil", "weight": 1}, {"from": "mackerels-fillets", "label": 1, "to": "mackerel-fillets-in-white-wine-and-herbs", "weight": 1}, {"from": "mackerels-fillets", "label": 1, "to": "mackerels-fillets-with-olives-and-lemon", "weight": 1}, {"from": "mackerels-fillets", "label": 1, "to": "mackerels-fillets-with-tomato-and-basilisk", "weight": 1}, {"from": "mackerels-fillets", "label": 1, "to": "plain-mackerels-fillets", "weight": 1}, {"from": "smoked-salmons", "label": 1, "to": "smoked-salmons-from-farming", "weight": 1}, {"from": "smoked-salmons", "label": 1, "to": "wild-smoked-salmons", "weight": 1}, {"from": "canned-sardines", "label": 1, "to": "sardines-in-oil", "weight": 1}, {"from": "canned-sardines", "label": 1, "to": "sardines-in-tomato-sauce", "weight": 1}, {"from": "canned-sardines", "label": 1, "to": "sardines-without-oil", "weight": 1}, {"from": "sardines-in-oil", "label": 1, "to": "sardines-in-oil-and-lemon", "weight": 1}, {"from": "sardines-in-oil", "label": 1, "to": "sardines-in-sunflower-oil", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

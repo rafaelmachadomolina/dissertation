@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#8fb05c", "id": "grains-rice-pasta-noodles", "label": "grains-rice-pasta-noodles", "shape": "dot", "size": 8}, {"color": "#97c3fc", "id": "canned-legumes", "label": "canned-legumes", "shape": "dot", "size": 3}, {"color": "#97c3fc", "id": "frozen-legumes", "label": "frozen-legumes", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "legume-flours", "label": "legume-flours", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "legume-milks", "label": "legume-milks", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "legumes", "label": "legumes", "shape": "dot", "size": 6}, {"color": "#ed7d31", "id": "canned-broad-beans", "label": "canned-broad-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-chickpeas", "label": "canned-chickpeas", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "canned-common-beans", "label": "canned-common-beans", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "canned-green-beans", "label": "canned-green-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-green-pigeon-peas", "label": "canned-green-pigeon-peas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-lentils", "label": "canned-lentils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-peas", "label": "canned-peas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-peas-and-carrots", "label": "canned-peas-and-carrots", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-scarlet-runner-beans", "label": "canned-scarlet-runner-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-chickpeas", "label": "frozen-chickpeas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-common-beans", "label": "frozen-common-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "frozen-lima-beans", "label": "frozen-lima-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "chickpeas-flour", "label": "chickpeas-flour", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fresh-broad-flour", "label": "fresh-broad-flour", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "green-bean-flour", "label": "green-bean-flour", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lentil-flour", "label": "lentil-flour", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lupin-bean-flour", "label": "lupin-bean-flour", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "soybean-flour", "label": "soybean-flour", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "soy-milks", "label": "soy-milks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fresh-broad-green-beans", "label": "fresh-broad-green-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fresh-flat-green-beans", "label": "fresh-flat-green-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "fresh-green-pigeon-peas", "label": "fresh-green-pigeon-peas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "green-peas", "label": "green-peas", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "legume-seeds", "label": "legume-seeds", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "pulses", "label": "pulses", "shape": "dot", "size": 5}, {"color": "#ed7d31", "id": "soy", "label": "soy", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-flageolet-beans", "label": "canned-flageolet-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-kidney-common-beans", "label": "canned-kidney-common-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-white-common-beans", "label": "canned-white-common-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canned-flat-green-beans", "label": "canned-flat-green-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "sweetened-natural-soy-milks", "label": "sweetened-natural-soy-milks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "unsweetened-natural-soy-milks", "label": "unsweetened-natural-soy-milks", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "alfalfa-seeds", "label": "alfalfa-seeds", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "azuki-beans", "label": "azuki-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "bambara-groundnuts", "label": "bambara-groundnuts", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "black-eyed-peas", "label": "black-eyed-peas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "black-grams", "label": "black-grams", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "butter-beans", "label": "butter-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "chickpeas", "label": "chickpeas", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "common-beans", "label": "common-beans", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "cowpeas", "label": "cowpeas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "hyacinth-beans", "label": "hyacinth-beans", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "lentils", "label": "lentils", "shape": "dot", "size": 2}, {"color": "#ed7d31", "id": "lupin-beans", "label": "lupin-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mat-beans", "label": "mat-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "mung-beans", "label": "mung-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "peas", "label": "peas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pigeon-peas", "label": "pigeon-peas", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "rice-beans", "label": "rice-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "scarlet-runner-beans", "label": "scarlet-runner-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "sword-beans", "label": "sword-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "tepary-beans", "label": "tepary-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "velvet-beans", "label": "velvet-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "winged-beans", "label": "winged-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "black-beans", "label": "black-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "canela-beans", "label": "canela-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pinto-beans", "label": "pinto-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "red-beans", "label": "red-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "white-beans", "label": "white-beans", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "black-lentils", "label": "black-lentils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "blonde-lentils", "label": "blonde-lentils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "brown-lentils", "label": "brown-lentils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "green-lentils", "label": "green-lentils", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "red-lentils", "label": "red-lentils", "shape": "dot", "size": 1}]);
+        edges = new vis.DataSet([{"from": "grains-rice-pasta-noodles", "label": 1, "to": "canned-legumes", "weight": 1}, {"from": "grains-rice-pasta-noodles", "label": 1, "to": "frozen-legumes", "weight": 1}, {"from": "grains-rice-pasta-noodles", "label": 1, "to": "legume-flours", "weight": 1}, {"from": "grains-rice-pasta-noodles", "label": 1, "to": "legume-milks", "weight": 1}, {"from": "grains-rice-pasta-noodles", "label": 1, "to": "legumes", "weight": 1}, {"from": "canned-legumes", "label": 1, "to": "canned-broad-beans", "weight": 1}, {"from": "canned-legumes", "label": 1, "to": "canned-chickpeas", "weight": 1}, {"from": "canned-legumes", "label": 1, "to": "canned-common-beans", "weight": 1}, {"from": "canned-legumes", "label": 1, "to": "canned-green-beans", "weight": 1}, {"from": "canned-legumes", "label": 1, "to": "canned-green-pigeon-peas", "weight": 1}, {"from": "canned-legumes", "label": 1, "to": "canned-lentils", "weight": 1}, {"from": "canned-legumes", "label": 1, "to": "canned-peas", "weight": 1}, {"from": "canned-legumes", "label": 1, "to": "canned-peas-and-carrots", "weight": 1}, {"from": "canned-legumes", "label": 1, "to": "canned-scarlet-runner-beans", "weight": 1}, {"from": "frozen-legumes", "label": 1, "to": "frozen-chickpeas", "weight": 1}, {"from": "frozen-legumes", "label": 1, "to": "frozen-common-beans", "weight": 1}, {"from": "frozen-legumes", "label": 1, "to": "frozen-lima-beans", "weight": 1}, {"from": "legume-flours", "label": 1, "to": "chickpeas-flour", "weight": 1}, {"from": "legume-flours", "label": 1, "to": "fresh-broad-flour", "weight": 1}, {"from": "legume-flours", "label": 1, "to": "green-bean-flour", "weight": 1}, {"from": "legume-flours", "label": 1, "to": "lentil-flour", "weight": 1}, {"from": "legume-flours", "label": 1, "to": "lupin-bean-flour", "weight": 1}, {"from": "legume-flours", "label": 1, "to": "soybean-flour", "weight": 1}, {"from": "legume-milks", "label": 1, "to": "soy-milks", "weight": 1}, {"from": "legumes", "label": 1, "to": "fresh-broad-green-beans", "weight": 1}, {"from": "legumes", "label": 1, "to": "fresh-flat-green-beans", "weight": 1}, {"from": "legumes", "label": 1, "to": "fresh-green-pigeon-peas", "weight": 1}, {"from": "legumes", "label": 1, "to": "green-peas", "weight": 1}, {"from": "legumes", "label": 1, "to": "legume-seeds", "weight": 1}, {"from": "legumes", "label": 1, "to": "pulses", "weight": 1}, {"from": "legumes", "label": 1, "to": "soy", "weight": 1}, {"from": "canned-common-beans", "label": 1, "to": "canned-flageolet-beans", "weight": 1}, {"from": "canned-common-beans", "label": 1, "to": "canned-kidney-common-beans", "weight": 1}, {"from": "canned-common-beans", "label": 1, "to": "canned-white-common-beans", "weight": 1}, {"from": "canned-green-beans", "label": 1, "to": "canned-flat-green-beans", "weight": 1}, {"from": "soy-milks", "label": 1, "to": "sweetened-natural-soy-milks", "weight": 1}, {"from": "soy-milks", "label": 1, "to": "unsweetened-natural-soy-milks", "weight": 1}, {"from": "legume-seeds", "label": 1, "to": "alfalfa-seeds", "weight": 1}, {"from": "pulses", "label": 1, "to": "azuki-beans", "weight": 1}, {"from": "pulses", "label": 1, "to": "bambara-groundnuts", "weight": 1}, {"from": "pulses", "label": 1, "to": "black-eyed-peas", "weight": 1}, {"from": "pulses", "label": 1, "to": "black-grams", "weight": 1}, {"from": "pulses", "label": 1, "to": "butter-beans", "weight": 1}, {"from": "pulses", "label": 1, "to": "chickpeas", "weight": 1}, {"from": "pulses", "label": 1, "to": "common-beans", "weight": 1}, {"from": "pulses", "label": 1, "to": "cowpeas", "weight": 1}, {"from": "pulses", "label": 1, "to": "hyacinth-beans", "weight": 1}, {"from": "pulses", "label": 1, "to": "lentils", "weight": 1}, {"from": "pulses", "label": 1, "to": "lupin-beans", "weight": 1}, {"from": "pulses", "label": 1, "to": "mat-beans", "weight": 1}, {"from": "pulses", "label": 1, "to": "mung-beans", "weight": 1}, {"from": "pulses", "label": 1, "to": "peas", "weight": 1}, {"from": "pulses", "label": 1, "to": "pigeon-peas", "weight": 1}, {"from": "pulses", "label": 1, "to": "rice-beans", "weight": 1}, {"from": "pulses", "label": 1, "to": "scarlet-runner-beans", "weight": 1}, {"from": "pulses", "label": 1, "to": "sword-beans", "weight": 1}, {"from": "pulses", "label": 1, "to": "tepary-beans", "weight": 1}, {"from": "pulses", "label": 1, "to": "velvet-beans", "weight": 1}, {"from": "pulses", "label": 1, "to": "winged-beans", "weight": 1}, {"from": "common-beans", "label": 1, "to": "black-beans", "weight": 1}, {"from": "common-beans", "label": 1, "to": "canela-beans", "weight": 1}, {"from": "common-beans", "label": 1, "to": "pinto-beans", "weight": 1}, {"from": "common-beans", "label": 1, "to": "red-beans", "weight": 1}, {"from": "common-beans", "label": 1, "to": "white-beans", "weight": 1}, {"from": "lentils", "label": 1, "to": "black-lentils", "weight": 1}, {"from": "lentils", "label": 1, "to": "blonde-lentils", "weight": 1}, {"from": "lentils", "label": 1, "to": "brown-lentils", "weight": 1}, {"from": "lentils", "label": 1, "to": "green-lentils", "weight": 1}, {"from": "lentils", "label": 1, "to": "red-lentils", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

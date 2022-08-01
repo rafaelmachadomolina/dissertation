@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#8fb05c", "id": "deli", "label": "deli", "shape": "dot", "size": 6}, {"color": "#97c3fc", "id": "hams", "label": "hams", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "rillettes", "label": "rillettes", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "sausages", "label": "sausages", "shape": "dot", "size": 4}, {"color": "#97c3fc", "id": "terrines", "label": "terrines", "shape": "dot", "size": 3}, {"color": "#ed7d31", "id": "braised-hams", "label": "braised-hams", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "diced-ham", "label": "diced-ham", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "serrano-hams", "label": "serrano-hams", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "white-hams", "label": "white-hams", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "fish-rillettes", "label": "fish-rillettes", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "french-sausages", "label": "french-sausages", "shape": "dot", "size": 2}, {"color": "#97c3fc", "id": "german-sausages", "label": "german-sausages", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pickled-sausages", "label": "pickled-sausages", "shape": "dot", "size": 1}, {"color": "#97c3fc", "id": "poultry-sausages", "label": "poultry-sausages", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "smoked-sausages", "label": "smoked-sausages", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "bison-terrines", "label": "bison-terrines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "blood-sausage-terrines", "label": "blood-sausage-terrines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "boar-terrines", "label": "boar-terrines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "chicken-terrines", "label": "chicken-terrines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "country-terrines", "label": "country-terrines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "duck-terrines", "label": "duck-terrines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pheasant-terrines", "label": "pheasant-terrines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "rabbit-terrines", "label": "rabbit-terrines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "salmon-terrines", "label": "salmon-terrines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "trout-terrines", "label": "trout-terrines", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "pike-rillettes", "label": "pike-rillettes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "tuna-rillettes", "label": "tuna-rillettes", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "alsatian-liver-sausages", "label": "alsatian-liver-sausages", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "liver-sausages-from-ariege", "label": "liver-sausages-from-ariege", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lorrain-sausages", "label": "lorrain-sausages", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "lyon-sausage", "label": "lyon-sausage", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "molene-sausage", "label": "molene-sausage", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "montbeliard-sausages", "label": "montbeliard-sausages", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "morteau-sausages", "label": "morteau-sausages", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "toulouse-sausages", "label": "toulouse-sausages", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "thuringian-sausages", "label": "thuringian-sausages", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "chicken-sausages", "label": "chicken-sausages", "shape": "dot", "size": 1}, {"color": "#ed7d31", "id": "turkey-sausages", "label": "turkey-sausages", "shape": "dot", "size": 1}]);
+        edges = new vis.DataSet([{"from": "deli", "label": 1, "to": "hams", "weight": 1}, {"from": "deli", "label": 1, "to": "rillettes", "weight": 1}, {"from": "deli", "label": 1, "to": "sausages", "weight": 1}, {"from": "deli", "label": 1, "to": "terrines", "weight": 1}, {"from": "hams", "label": 1, "to": "braised-hams", "weight": 1}, {"from": "hams", "label": 1, "to": "diced-ham", "weight": 1}, {"from": "hams", "label": 1, "to": "serrano-hams", "weight": 1}, {"from": "hams", "label": 1, "to": "white-hams", "weight": 1}, {"from": "rillettes", "label": 1, "to": "fish-rillettes", "weight": 1}, {"from": "sausages", "label": 1, "to": "french-sausages", "weight": 1}, {"from": "sausages", "label": 1, "to": "german-sausages", "weight": 1}, {"from": "sausages", "label": 1, "to": "pickled-sausages", "weight": 1}, {"from": "sausages", "label": 1, "to": "poultry-sausages", "weight": 1}, {"from": "sausages", "label": 1, "to": "smoked-sausages", "weight": 1}, {"from": "terrines", "label": 1, "to": "bison-terrines", "weight": 1}, {"from": "terrines", "label": 1, "to": "blood-sausage-terrines", "weight": 1}, {"from": "terrines", "label": 1, "to": "boar-terrines", "weight": 1}, {"from": "terrines", "label": 1, "to": "chicken-terrines", "weight": 1}, {"from": "terrines", "label": 1, "to": "country-terrines", "weight": 1}, {"from": "terrines", "label": 1, "to": "duck-terrines", "weight": 1}, {"from": "terrines", "label": 1, "to": "pheasant-terrines", "weight": 1}, {"from": "terrines", "label": 1, "to": "rabbit-terrines", "weight": 1}, {"from": "terrines", "label": 1, "to": "salmon-terrines", "weight": 1}, {"from": "terrines", "label": 1, "to": "trout-terrines", "weight": 1}, {"from": "fish-rillettes", "label": 1, "to": "pike-rillettes", "weight": 1}, {"from": "fish-rillettes", "label": 1, "to": "tuna-rillettes", "weight": 1}, {"from": "french-sausages", "label": 1, "to": "alsatian-liver-sausages", "weight": 1}, {"from": "french-sausages", "label": 1, "to": "liver-sausages-from-ariege", "weight": 1}, {"from": "french-sausages", "label": 1, "to": "lorrain-sausages", "weight": 1}, {"from": "french-sausages", "label": 1, "to": "lyon-sausage", "weight": 1}, {"from": "french-sausages", "label": 1, "to": "molene-sausage", "weight": 1}, {"from": "french-sausages", "label": 1, "to": "montbeliard-sausages", "weight": 1}, {"from": "french-sausages", "label": 1, "to": "morteau-sausages", "weight": 1}, {"from": "french-sausages", "label": 1, "to": "toulouse-sausages", "weight": 1}, {"from": "german-sausages", "label": 1, "to": "thuringian-sausages", "weight": 1}, {"from": "poultry-sausages", "label": 1, "to": "chicken-sausages", "weight": 1}, {"from": "poultry-sausages", "label": 1, "to": "turkey-sausages", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
