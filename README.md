@@ -1,7 +1,7 @@
 <!-- PROJECT INTRO -->
 <div align="center">
 
-  <h1 align="center">Ingredient match application</h1>
+  <h1 align="center">Solving nutritional and allergen missing information in a foodtech company: A data-based approach</h1>
 
   <p align="center">
     This repo contains all files and scripts developed for this dissertation.
